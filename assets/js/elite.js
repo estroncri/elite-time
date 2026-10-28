@@ -184,6 +184,11 @@ function chrome() {
       <div><h4>Marcas</h4><ul>${Object.keys(BRANDS).map(b => `<li><a href="coleccion.html#${BRANDS[b].slug}">${b}</a></li>`).join('')}</ul></div>
       <div><h4>Pedidos</h4><p class="phone">${E.phoneHTML()}</p><ul style="margin-top:12px"><li><a href="https://www.instagram.com/elitetimebq/" target="_blank" rel="noopener">Instagram · @elitetimebq</a></li><li><a href="https://www.tiktok.com/@elitetimebaq" target="_blank" rel="noopener">TikTok · @elitetimebaq</a></li><li><a href="https://www.facebook.com/share/1DhSsEF17G/" target="_blank" rel="noopener">Facebook · Elite Time bq</a></li></ul></div>
     </div>
+    <div class="wrap"><a class="wn-strip" href="https://www.webnaria.store/?utm_source=elitetime&utm_medium=footer&utm_campaign=creado_por" target="_blank" rel="noopener">
+      <img src="img/marca/webnaria.webp" alt="Webnaria" width="38" height="38">
+      <span class="wn-t"><small>Página creada por Webnaria</small><b>¿Te gustó esta web? <em>Tu negocio puede tener una igual.</em></b></span>
+      <span class="wn-go">Quiero mi web<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a></div>
     <div class="foot-word" aria-hidden="true" data-parallax="-.08">ÉLITE TIME</div>
     <div class="wrap legal"><span>© ${new Date().getFullYear()} Élite Time · Barranquilla, Colombia</span><span>Relojería original</span></div>
   </footer>`);
