@@ -10,13 +10,14 @@
 <link rel="icon" href="img/marca/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://elite-time-panel.pages.dev" crossorigin>
 <link rel="stylesheet" href="assets/css/elite.css">
 <style>
 /* ---- Inicio ---- */
 .hero{min-height:min(calc(100svh - 34px - var(--head-h)),920px);display:grid;align-items:center;padding-block:clamp(30px,5vw,60px);position:relative;isolation:isolate;overflow:hidden}
 /* portada: foto de la vitrina del cliente, oscurecida hacia el texto para que se lea */
 .hero .bg{position:absolute;inset:-12% 0;z-index:-3;background:linear-gradient(90deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.8) 38%,rgba(10,10,10,.55) 70%,rgba(10,10,10,.7) 100%),linear-gradient(transparent 55%,#0a0a0a 96%),url(img/marca/portada.webp) center 40%/cover}
-@media (max-width:900px){.hero .bg{background:linear-gradient(rgba(10,10,10,.6),rgba(10,10,10,.82) 45%,#0a0a0a 92%),url(img/marca/portada.webp) center 30%/cover}}
+@media (max-width:900px){.hero .bg{background:linear-gradient(rgba(10,10,10,.6),rgba(10,10,10,.82) 45%,#0a0a0a 92%),url(img/marca/portada-600.webp) center 30%/cover}}
 .hero .glow{position:absolute;right:-15%;top:-20%;width:80vw;max-width:1100px;aspect-ratio:1;z-index:-2;background:radial-gradient(closest-side,rgba(202,174,118,.18),transparent 70%)}
 .hero .giant{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:-1;font-family:var(--f-display);font-size:clamp(9rem,30vw,30rem);line-height:.8;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(202,174,118,.13);white-space:nowrap;pointer-events:none}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,70px);align-items:center}
@@ -182,9 +183,9 @@
       </div>
       <div class="stage" id="stage" aria-label="Reloj con la hora actual de Barranquilla">
         <svg id="dial" viewBox="-260 -260 520 520" aria-hidden="true"></svg>
-        <img class="orbit o1" src="img/relojes/p13-3.webp" alt="" data-depth="30">
-        <img class="orbit o2" src="img/relojes/p04-1.webp" alt="" data-depth="-24">
-        <img class="orbit o3" src="img/relojes/p13-1.webp" alt="" data-depth="18">
+        <img class="orbit o1" src="img/relojes/p13-3.webp" srcset="img/relojes/p13-3-400.webp 400w, img/relojes/p13-3-700.webp 700w, img/relojes/p13-3.webp 1100w" sizes="150px" decoding="async" alt="" data-depth="30">
+        <img class="orbit o2" src="img/relojes/p04-1.webp" srcset="img/relojes/p04-1-400.webp 400w, img/relojes/p04-1-700.webp 700w, img/relojes/p04-1.webp 1100w" sizes="150px" decoding="async" alt="" data-depth="-24">
+        <img class="orbit o3" src="img/relojes/p13-1.webp" srcset="img/relojes/p13-1-400.webp 400w, img/relojes/p13-1-700.webp 700w, img/relojes/p13-1.webp 1100w" sizes="150px" decoding="async" alt="" data-depth="18">
         <div class="cap" id="dialCap">BARRANQUILLA · GMT−5</div>
       </div>
     </div>
@@ -217,15 +218,15 @@
 
   <section class="sec bg-rosette">
     <div class="wrap look">
-      <figure class="a reveal-img"><img src="img/modelo/modelo-2.webp" alt="Modelo con un Invicta Racing amarillo" loading="lazy"><figcaption>Invicta Racing · Amarillo</figcaption></figure>
+      <figure class="a reveal-img"><img src="img/modelo/modelo-2.webp" srcset="img/modelo/modelo-2-600.webp 600w, img/modelo/modelo-2.webp 825w" sizes="(max-width:800px) 92vw, 45vw" decoding="async" alt="Modelo con un Invicta Racing amarillo" loading="lazy"><figcaption>Invicta Racing · Amarillo</figcaption></figure>
       <div class="b">
         <span class="eyebrow">En la muñeca</span>
         <h2 class="h-md" data-split>Un reloj que <em class="gold">se nota</em> antes de que hables.</h2>
         <p class="lead" data-reveal>Así se ven nuestras piezas fuera de la caja: con calle, con sol y con estilo. Fotos reales, sin retoques de catálogo.</p>
         <div data-reveal><a class="btn ghost" href="coleccion.html#racing">Ver la línea Racing</a></div>
       </div>
-      <figure class="c reveal-img"><img src="img/modelo/modelo-3.webp" alt="Modelo con un Invicta Racing rojo" loading="lazy"><figcaption>Racing · Rojo</figcaption></figure>
-      <figure class="d reveal-img"><img src="img/modelo/modelo-1.webp" alt="Modelo con un reloj blanco y dorado" loading="lazy"></figure>
+      <figure class="c reveal-img"><img src="img/modelo/modelo-3.webp" srcset="img/modelo/modelo-3-600.webp 600w, img/modelo/modelo-3.webp 825w" sizes="(max-width:800px) 92vw, 45vw" decoding="async" alt="Modelo con un Invicta Racing rojo" loading="lazy"><figcaption>Racing · Rojo</figcaption></figure>
+      <figure class="d reveal-img"><img src="img/modelo/modelo-1.webp" srcset="img/modelo/modelo-1-600.webp 600w, img/modelo/modelo-1.webp 825w" sizes="(max-width:800px) 92vw, 45vw" decoding="async" alt="Modelo con un reloj blanco y dorado" loading="lazy"></figure>
     </div>
   </section>
 
@@ -242,15 +243,15 @@
     <div class="wrap">
       <div class="sec-head"><div><span class="eyebrow">Compra por estilo</span><h2 class="h-lg" data-split>Para él. <em class="gold">Para ella.</em></h2></div></div>
       <div class="split2" data-stagger>
-        <a class="gpanel" href="coleccion.html#hombre" data-cursor="Explorar"><div class="pics"><img src="img/relojes/p14-1.webp" alt=""><img src="img/relojes/p23-1.webp" alt=""><img src="img/relojes/p04-2.webp" alt=""></div><div class="t"><h3>Hombre</h3><span id="nH">63 relojes →</span></div></a>
-        <a class="gpanel" href="coleccion.html#mujer" data-cursor="Explorar"><div class="pics"><img src="img/relojes/p26-1.webp" alt=""><img src="img/relojes/p28-1.webp" alt=""><img src="img/relojes/p27-1.webp" alt=""></div><div class="t"><h3>Mujer</h3><span id="nM">17 relojes →</span></div></a>
+        <a class="gpanel" href="coleccion.html#hombre" data-cursor="Explorar"><div class="pics"><img src="img/relojes/p14-1.webp" srcset="img/relojes/p14-1-400.webp 400w, img/relojes/p14-1-700.webp 700w, img/relojes/p14-1.webp 1100w" sizes="260px" decoding="async" alt=""><img src="img/relojes/p23-1.webp" srcset="img/relojes/p23-1-400.webp 400w, img/relojes/p23-1-700.webp 700w, img/relojes/p23-1.webp 1100w" sizes="260px" decoding="async" alt=""><img src="img/relojes/p04-2.webp" srcset="img/relojes/p04-2-400.webp 400w, img/relojes/p04-2-700.webp 700w, img/relojes/p04-2.webp 1100w" sizes="260px" decoding="async" alt=""></div><div class="t"><h3>Hombre</h3><span id="nH">63 relojes →</span></div></a>
+        <a class="gpanel" href="coleccion.html#mujer" data-cursor="Explorar"><div class="pics"><img src="img/relojes/p26-1.webp" srcset="img/relojes/p26-1-400.webp 400w, img/relojes/p26-1-700.webp 700w, img/relojes/p26-1.webp 1100w" sizes="260px" decoding="async" alt=""><img src="img/relojes/p28-1.webp" srcset="img/relojes/p28-1-400.webp 400w, img/relojes/p28-1-700.webp 700w, img/relojes/p28-1.webp 1100w" sizes="260px" decoding="async" alt=""><img src="img/relojes/p27-1.webp" srcset="img/relojes/p27-1-400.webp 400w, img/relojes/p27-1-700.webp 700w, img/relojes/p27-1.webp 1100w" sizes="260px" decoding="async" alt=""></div><div class="t"><h3>Mujer</h3><span id="nM">17 relojes →</span></div></a>
       </div>
     </div>
   </section>
 
   <section class="sec light" id="tula">
     <div class="wrap tula">
-      <figure class="photo reveal-img"><img src="img/tula/tula.webp" alt="Tulas reutilizables negras con el logo dorado de Élite Time" loading="lazy"></figure>
+      <figure class="photo reveal-img"><img src="img/tula/tula.webp" srcset="img/tula/tula-700.webp 700w, img/tula/tula.webp 1050w" sizes="(max-width:900px) 92vw, 45vw" decoding="async" alt="Tulas reutilizables negras con el logo dorado de Élite Time" loading="lazy"></figure>
       <div class="copy">
         <span class="eyebrow">La presentación</span>
         <h2 class="h-lg" data-split>Tu reloj llega en <em class="gold">nuestra tula.</em></h2>
@@ -282,7 +283,7 @@
         <span class="eyebrow">Clientes Élite</span>
         <h2 class="h-lg" data-split style="margin-top:18px">Ellos ya <em class="gold">marcan la diferencia.</em></h2>
         <p class="lead" data-reveal style="margin-top:20px">Sin actores ni montajes: clientes reales recibiendo su reloj en Barranquilla.</p>
-        <div class="thumbs" data-stagger><img src="img/clientes/cliente-4.webp" alt="Cliente con su Invicta Racing naranja" loading="lazy"><img src="img/clientes/cliente-1.webp" alt="Cliente con su reloj" loading="lazy"><img src="img/clientes/cliente-2.webp" alt="Cliente con caja de impacto Invicta" loading="lazy"></div>
+        <div class="thumbs" data-stagger><img src="img/clientes/cliente-4.webp" srcset="img/clientes/cliente-4-500.webp 500w, img/clientes/cliente-4.webp 1000w" sizes="(max-width:860px) 30vw, 220px" decoding="async" alt="Cliente con su Invicta Racing naranja" loading="lazy"><img src="img/clientes/cliente-1.webp" srcset="img/clientes/cliente-1-500.webp 500w, img/clientes/cliente-1.webp 1000w" sizes="(max-width:860px) 30vw, 220px" decoding="async" alt="Cliente con su reloj" loading="lazy"><img src="img/clientes/cliente-2.webp" srcset="img/clientes/cliente-2-500.webp 500w, img/clientes/cliente-2.webp 1000w" sizes="(max-width:860px) 30vw, 220px" decoding="async" alt="Cliente con caja de impacto Invicta" loading="lazy"></div>
         <div data-reveal style="margin-top:26px"><a class="btn ghost" href="clientes.html">Ver todos los clientes</a></div>
       </div>
     </div>
@@ -313,7 +314,7 @@ Elite.ready(d => {
 
   /* destacados */
   let F = P.filter(p => p.destacado && p.disponible !== false); if (F.length < 4) F = F.concat(P.filter(p => !F.includes(p)).slice(0, 6 - F.length));
-  $('#hsTrack').innerHTML = F.map((p, i) => `<a class="feat" href="${Elite.url(p)}" data-cursor="Ver"><span class="tag gold">${esc(p.marca)}</span><span class="num">${String(i + 1).padStart(2, '0')}</span><div class="img"><img src="${esc(p.imagen)}" alt="${esc(p.marca + ' ' + p.modelo)}"></div><span class="eyebrow" style="color:var(--mute)">${esc(p.genero)}</span><h3>${esc(p.modelo)}</h3><div class="ft"><span class="mono">${fmt(p.precio)}</span><button class="icon-btn" data-add="${esc(p.id)}" aria-label="Agregar al carrito" style="width:40px;height:40px">${Elite.ICON.plus}</button></div></a>`).join('')
+  $('#hsTrack').innerHTML = F.map((p, i) => `<a class="feat" href="${Elite.url(p)}" data-cursor="Ver"><span class="tag gold">${esc(p.marca)}</span><span class="num">${String(i + 1).padStart(2, '0')}</span><div class="img">${Elite.img(p.imagen, p.marca + ' ' + p.modelo, '(max-width:900px) 70vw, 380px', 'loading="lazy"')}</div><span class="eyebrow" style="color:var(--mute)">${esc(p.genero)}</span><h3>${esc(p.modelo)}</h3><div class="ft"><span class="mono">${fmt(p.precio)}</span><button class="icon-btn" data-add="${esc(p.id)}" aria-label="Agregar al carrito" style="width:40px;height:40px">${Elite.ICON.plus}</button></div></a>`).join('')
     + `<a class="feat end" href="coleccion.html"><h3 style="font-size:2.2rem">Ver los ${P.length} relojes</h3><span class="btn" style="--bg:#0a0a0a;--fg:var(--bone)">Colección completa</span></a>`;
 
   /* marcas */
@@ -377,15 +378,21 @@ function buildDial() {
   const hS = el('g', {}); el('rect', { x: -1.2, y: -182, width: 2.4, height: 226, fill: '#caae76' }, hS); el('circle', { cy: -128, r: 7, fill: 'none', stroke: '#caae76', 'stroke-width': 2.4 }, hS); el('circle', { r: 9, fill: '#caae76' }, hS);
   el('circle', { r: 4, fill: '#0a0a0a' });
   el('path', { d: 'M-170,-80 A190,190 0 0 1 60,-185 A230,230 0 0 0 -170,-80Z', fill: '#fff', opacity: .05 });
-  const fmtP = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit', second: '2-digit', day: '2-digit', hour12: false });
-  let lastS = -1;
-  (function tick() {
-    const f = fmtP.formatToParts(new Date()), g = k => +f.find(p => p.type === k).value;
-    const ms = reduce ? 0 : (Date.now() % 1000) / 1000, sec = g('second') + ms, min = g('minute') + sec / 60, hr = (g('hour') % 12) + min / 60;
+  /* Barranquilla está siempre en UTC−5 (sin horario de verano): la hora se calcula con aritmética simple,
+     y el reloj solo se anima mientras está en pantalla y la pestaña está visible */
+  const OFF = -5 * 3600e3;
+  let lastS = -1, onScreen = true, tickId = 0;
+  function tick() {
+    const d = new Date(Date.now() + OFF), s = d.getUTCSeconds(), m = d.getUTCMinutes(), h = d.getUTCHours();
+    const sec = s + (reduce ? 0 : d.getUTCMilliseconds() / 1000), min = m + sec / 60, hr = (h % 12) + min / 60;
     hS.setAttribute('transform', `rotate(${sec * 6})`); hM.setAttribute('transform', `rotate(${min * 6})`); hH.setAttribute('transform', `rotate(${hr * 30})`);
-    if (g('second') !== lastS) { lastS = g('second'); date.textContent = String(g('day')).padStart(2, '0'); $('#dialCap').textContent = `BARRANQUILLA · ${String(g('hour')).padStart(2, '0')}:${String(g('minute')).padStart(2, '0')} · GMT−5` }
-    reduce ? setTimeout(tick, 1000) : requestAnimationFrame(tick);
-  })();
+    if (s !== lastS) { lastS = s; date.textContent = String(d.getUTCDate()).padStart(2, '0'); $('#dialCap').textContent = `BARRANQUILLA · ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} · GMT−5` }
+    tickId = 0; if (onScreen && !document.hidden) tickId = reduce ? setTimeout(tick, 1000) : requestAnimationFrame(tick);
+  }
+  const wake = () => { if (!tickId && onScreen && !document.hidden) tick() };
+  new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; wake() }).observe($('#stage'));
+  document.addEventListener('visibilitychange', wake);
+  tick();
   if (reduce) return;
   /* bisel unidireccional: clics de 6° al hacer scroll */
   let raf; addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { bezel.style.transition = 'transform .35s cubic-bezier(.3,1.6,.5,1)'; bezel.style.transform = `rotate(${-Math.round(scrollY / 14) * 6}deg)` }) }, { passive: true });

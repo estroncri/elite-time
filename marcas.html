@@ -9,6 +9,7 @@
 <link rel="icon" href="img/marca/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://elite-time-panel.pages.dev" crossorigin>
 <link rel="stylesheet" href="assets/css/elite.css">
 <style>
 .bnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
@@ -70,7 +71,7 @@ Elite.ready(d => {
     const L = P.filter(p => p.marca === b), pr = L.filter(p => p.precio).map(p => p.precio);
     const pick = [...L.filter(p => p.destacado), ...L].filter((v, j, a) => a.indexOf(v) === j).slice(0, 3);
     const vis = b === 'Curren' ? `<img class="curren-box" src="img/marca/caja-curren.webp" alt="Caja original Curren">`
-      : `<div class="fan">${pick.map(p => `<a href="${Elite.url(p)}" data-cursor="Ver"><img src="${esc(p.imagen)}" alt="${esc(p.marca + ' ' + p.modelo)}" loading="lazy"></a>`).join('')}</div>`;
+      : `<div class="fan">${pick.map(p => `<a href="${Elite.url(p)}" data-cursor="Ver">${Elite.img(p.imagen, p.marca + ' ' + p.modelo, '240px', 'loading="lazy"')}</a>`).join('')}</div>`;
     return `<article class="bpanel" id="${i.slug}">
       <div class="txt">
         <span class="idx">0${k + 1} / 0${B.length} · ${esc(i.since)}</span>

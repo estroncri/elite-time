@@ -9,6 +9,7 @@
 <link rel="icon" href="img/marca/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://elite-time-panel.pages.dev" crossorigin>
 <link rel="stylesheet" href="assets/css/elite.css">
 <style>
 .film{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,80px);align-items:center}
@@ -86,9 +87,9 @@
     <div class="wrap">
       <div class="sec-head"><div><span class="eyebrow">En la muñeca</span><h2 class="h-lg" data-split>Así se <em class="gold">llevan.</em></h2></div><a class="btn ghost" href="coleccion.html#racing">Ver la línea Racing</a></div>
       <div class="wall">
-        <figure class="reveal-img"><img src="img/modelo/modelo-2.webp" alt="Invicta Racing amarillo en la muñeca" loading="lazy"></figure>
-        <figure class="reveal-img"><img src="img/modelo/modelo-3.webp" alt="Invicta Racing rojo en la muñeca" loading="lazy"></figure>
-        <figure class="reveal-img"><img src="img/modelo/modelo-1.webp" alt="Reloj blanco y dorado en la muñeca" loading="lazy"></figure>
+        <figure class="reveal-img"><img src="img/modelo/modelo-2.webp" srcset="img/modelo/modelo-2-600.webp 600w, img/modelo/modelo-2.webp 825w" sizes="(max-width:800px) 92vw, 45vw" decoding="async" alt="Invicta Racing amarillo en la muñeca" loading="lazy"></figure>
+        <figure class="reveal-img"><img src="img/modelo/modelo-3.webp" srcset="img/modelo/modelo-3-600.webp 600w, img/modelo/modelo-3.webp 825w" sizes="(max-width:800px) 92vw, 45vw" decoding="async" alt="Invicta Racing rojo en la muñeca" loading="lazy"></figure>
+        <figure class="reveal-img"><img src="img/modelo/modelo-1.webp" srcset="img/modelo/modelo-1-600.webp 600w, img/modelo/modelo-1.webp 825w" sizes="(max-width:800px) 92vw, 45vw" decoding="async" alt="Reloj blanco y dorado en la muñeca" loading="lazy"></figure>
       </div>
     </div>
   </section>
@@ -103,8 +104,11 @@
 Elite.ready(d => {
   const {$, $$, esc, ICON} = Elite, C = d.clientes || [];
   const tv = $('#tv'); $('#tvPlay').onclick = () => { tv.controls = true; tv.currentTime = 0; tv.play().catch(() => {}); $('#vid').classList.add('on') };
-  $('#mas').innerHTML = C.map((c, i) => `<figure data-i="${i}" data-cursor="Ampliar">${c.tipo === 'video' ? `<video src="${esc(c.src)}" muted loop playsinline autoplay preload="metadata"></video>` : `<img src="${esc(c.src)}" alt="Cliente de Élite Time" loading="lazy">`}${c.txt ? `<figcaption>${esc(c.txt)}</figcaption>` : ''}</figure>`).join('') || '<p class="lead">Pronto subiremos fotos de entregas.</p>';
-  if (Elite.reduce) $$('#mas video').forEach(v => { v.removeAttribute('autoplay'); v.pause() });
+  $('#mas').innerHTML = C.map((c, i) => `<figure data-i="${i}" data-cursor="Ampliar">${c.tipo === 'video' ? `<video src="${esc(c.src)}" muted loop playsinline autoplay preload="metadata"></video>` : `${Elite.img(c.src, 'Cliente de Élite Time', '(max-width:800px) 50vw, 25vw', 'loading="lazy"')}`}${c.txt ? `<figcaption>${esc(c.txt)}</figcaption>` : ''}</figure>`).join('') || '<p class="lead">Pronto subiremos fotos de entregas.</p>';
+  /* los videos de la galería solo se reproducen mientras se ven en pantalla */
+  const vids = $$('#mas video');
+  vids.forEach(v => { v.removeAttribute('autoplay'); v.pause() });
+  if (!Elite.reduce) { const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: .25 }); vids.forEach(v => io.observe(v)) }
   $('#lbX').innerHTML = ICON.close;
   const close = () => { $('#lb').classList.remove('on'); setTimeout(() => $('#lbIn').innerHTML = '', 500); Elite.lenis?.start() };
   $('#mas').onclick = e => { const f = e.target.closest('figure'); if (!f) return; const c = C[+f.dataset.i]; $('#lbIn').innerHTML = c.tipo === 'video' ? `<video src="${esc(c.src)}" controls autoplay playsinline></video>` : `<img src="${esc(c.src)}" alt="">`; $('#lb').classList.add('on'); Elite.lenis?.stop() };

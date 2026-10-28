@@ -45,14 +45,15 @@ E.ready = fn => isReady ? fn(E.data) : readyFns.push(fn);
 
 /* El catálogo vive en la base de datos de Cloudflare (lo edita el panel).
    Si la API no responde en 4 s, la tienda usa la copia de data/productos.json. */
-const API = 'https://elite-time-panel.pages.dev/api/catalog';
+const API = 'https://elite-time-panel.pages.dev/api/catalog', CACHE = 'elitetime-catalog';
+/* la consulta arranca apenas carga este archivo, sin esperar al resto de la página */
+const apiP = fetch(API).then(r => r.ok ? r.json() : null).then(d => { if (d && Array.isArray(d.productos)) store.set(CACHE, { t: Date.now(), d }); return d }).catch(() => null);
 async function loadData() {
-  let remote = null;
-  try {
-    const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 4000);
-    const r = await fetch(API, { signal: ctl.signal }); clearTimeout(t);
-    if (r.ok) remote = await r.json();
-  } catch (e) { }
+  /* si ya hay una copia de menos de 10 minutos se usa de inmediato (la consulta la renueva para la próxima vez);
+     si no, se espera a la base de datos como máximo 2,5 s */
+  const cached = store.get(CACHE, null);
+  let remote = cached && Date.now() - cached.t < 10 * 60e3 ? cached.d : null;
+  if (!remote) remote = await Promise.race([apiP, new Promise(r => setTimeout(() => r(null), 2500))]) || (cached && cached.d);
   if (remote && Array.isArray(remote.productos)) {
     E.data = { productos: remote.productos, clientes: remote.clientes || structuredClone(DEFAULT_CLIENTES), settings: { ...structuredClone(DEFAULT_SETTINGS), ...remote.settings, show: { ...DEFAULT_SETTINGS.show, ...(remote.settings || {}).show } } };
   } else {
@@ -68,12 +69,16 @@ E.specs = p => p.specs && p.specs.length ? p.specs : ['Movimiento de cuarzo', 'A
 E.wa = msg => `https://wa.me/${E.data.settings.wa}?text=${encodeURIComponent(msg)}`;
 E.phone = () => E.data.settings.wa.replace(/^57/, '').replace(/(\d{3})(\d{3})(\d+)/, '$1 $2 $3');
 E.url = p => `reloj.html#${p.id}`;
+/* cada foto en varios tamaños: el navegador descarga solo el que necesita la pantalla */
+const VAR = { relojes: [[400, 700], 1100], clientes: [[500], 1000], modelo: [[600], 825], tula: [[700], 1050] };
+E.srcset = src => { const m = /^img\/(relojes|clientes|modelo|tula)\/([\w-]+)\.webp$/.exec(src || ''); if (!m) return ''; const [ws, full] = VAR[m[1]]; return ws.map(w => `img/${m[1]}/${m[2]}-${w}.webp ${w}w`).concat(`${src} ${full}w`).join(', ') };
+E.img = (src, alt, sizes, attrs = '') => { const ss = E.srcset(src); return `<img src="${esc(src)}"${ss ? ` srcset="${ss}" sizes="${sizes}"` : ''} alt="${esc(alt)}" decoding="async" ${attrs}>` };
 /* número con el logo de WhatsApp, enlazado al chat */
 E.phoneHTML = (cls = '') => `<a class="wa-num ${cls}" href="${E.wa('Hola Élite Time, vi su página web y quiero información sobre sus relojes.')}" target="_blank" rel="noopener">${ICON.wa}<span>${E.phone()}</span></a>`;
 
 E.card = (p, i = 0) => `<a class="pcard${p.disponible === false ? ' sold' : ''}" href="${E.url(p)}" data-cursor="Ver" data-id="${esc(p.id)}">
   ${p.disponible === false ? '<span class="tag">Agotado</span>' : p.destacado ? '<span class="tag gold">Destacado</span>' : ''}
-  <div class="cush"><img src="${esc(p.imagen)}" alt="${esc(p.marca + ' ' + p.modelo)}" loading="${i < 8 ? 'eager' : 'lazy'}"></div>
+  <div class="cush">${E.img(p.imagen, p.marca + ' ' + p.modelo, '(max-width:560px) 46vw, (max-width:1100px) 30vw, 300px', `loading="${i < 4 ? 'eager' : 'lazy'}"`)}</div>
   <div class="info"><span class="brand">${esc(p.marca)} · ${esc(p.genero)}</span><h3>${esc(p.modelo)}</h3>
   <div class="row"><span class="price">${fmt(p.precio)}</span>${p.disponible === false ? '' : `<button class="add" data-add="${esc(p.id)}" aria-label="Agregar ${esc(p.modelo)} al carrito">${ICON.plus}</button>`}</div></div></a>`;
 
@@ -113,7 +118,7 @@ function renderCart() {
   }
   $('#cartFoot').hidden = false;
   box.innerHTML = cart.items.map((it, i) => { const p = E.byId(it.id); if (!p) return ''; return `<div class="citem">
-    <img src="${esc(p.imagen)}" alt=""><div><h4>${esc(p.marca)} ${esc(p.modelo)}</h4><small>${it.caja ? '+ Caja ' + esc(it.caja) + ' (adicional) · ' : 'Caja original · '}${fmt(p.precio)}</small>
+    ${E.img(p.imagen, '', '76px')}<div><h4>${esc(p.marca)} ${esc(p.modelo)}</h4><small>${it.caja ? '+ Caja ' + esc(it.caja) + ' (adicional) · ' : 'Caja original · '}${fmt(p.precio)}</small>
     <div class="qty"><button data-q="-1" data-i="${i}" aria-label="Quitar uno">−</button><span>${it.qty}</span><button data-q="1" data-i="${i}" aria-label="Agregar uno">+</button></div></div>
     <button class="rm" data-rm="${i}">Quitar</button></div>` }).join('');
   $('#cartTotal').textContent = fmt(cart.total());

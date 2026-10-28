@@ -25,7 +25,7 @@ html.lenis,html.lenis body{height:auto}
 body{margin:0;background:var(--ink);color:var(--bone);font-family:var(--f-body);font-weight:500;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:90;background:var(--ink)}
 /* grano sutil de película sobre todo el sitio */
-body::after{content:"";position:fixed;inset:-50%;z-index:200;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(6) infinite}
+body::after{content:"";position:fixed;inset:-50%;z-index:200;pointer-events:none;opacity:.05;will-change:transform;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(6) infinite}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-2%)}60%{transform:translate(-2%,-4%)}80%{transform:translate(4%,2%)}100%{transform:translate(0,0)}}
 a{color:inherit}
 img,video{max-width:100%;display:block}
@@ -282,9 +282,9 @@ section{position:relative}
    Capa ambiental fija (luces doradas que se mueven lento) + fondos por sección.
    Cada fondo lleva una veladura oscura para que el texto conserve el contraste. */
 .ambient{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.ambient i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
-.ambient i:nth-child(1){width:46vw;height:46vw;left:-12vw;top:10vh;background:radial-gradient(circle,rgba(202,174,118,.16),transparent 65%);animation:drift1 26s ease-in-out infinite alternate}
-.ambient i:nth-child(2){width:38vw;height:38vw;right:-10vw;top:45vh;background:radial-gradient(circle,rgba(156,131,80,.18),transparent 65%);animation:drift2 32s ease-in-out infinite alternate}
+.ambient i{position:absolute;border-radius:50%;opacity:.55;will-change:transform}
+.ambient i:nth-child(1){width:46vw;height:46vw;left:-12vw;top:10vh;background:radial-gradient(circle,rgba(202,174,118,.16),rgba(202,174,118,.05) 40%,transparent 70%);animation:drift1 26s ease-in-out infinite alternate}
+.ambient i:nth-child(2){width:38vw;height:38vw;right:-10vw;top:45vh;background:radial-gradient(circle,rgba(156,131,80,.18),rgba(156,131,80,.05) 40%,transparent 70%);animation:drift2 32s ease-in-out infinite alternate}
 .ambient i:nth-child(3){width:30vw;height:30vw;left:35vw;bottom:-12vw;background:radial-gradient(circle,rgba(233,214,168,.08),transparent 65%);animation:drift1 40s -8s ease-in-out infinite alternate}
 @keyframes drift1{to{transform:translate(14vw,-10vh) scale(1.2)}}
 @keyframes drift2{to{transform:translate(-16vw,12vh) scale(.85)}}
@@ -306,6 +306,16 @@ section{position:relative}
 .shine-line::after{content:"";position:absolute;inset:0;width:30%;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:sweep 5s var(--ease-io) infinite}
 @keyframes sweep{from{transform:translateX(-100%)}to{transform:translateX(400%)}}
 
+/* celulares: el desenfoque del fondo detrás de barras y etiquetas es lo que más cuesta al desplazarse;
+   se reemplaza por un fondo casi opaco que se ve igual */
+@media (pointer:coarse),(max-width:900px){
+  .site-head.solid{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(10,10,10,.95)}
+  .tag,.scrim{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .tag{background:rgba(10,10,10,.9)}
+  .light .tag{background:rgba(255,255,255,.95)}
+  .pcard{transform-style:flat}
+  .bar,.mbar,.look figcaption{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   body::after{display:none}
