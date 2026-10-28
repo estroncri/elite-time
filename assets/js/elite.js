@@ -13,6 +13,7 @@ const store = {
 
 const DEFAULT_SETTINGS = { wa: '573105300899', pin: '2026', sub: '', show: { perfumes: true, pedir: true, garantia: true, destacados: true } };
 const DEFAULT_CLIENTES = [
+  { src: 'img/clientes/cliente-4.webp', txt: 'Invicta Racing naranja · Barranquilla' },
   { src: 'img/clientes/cliente-1.webp', txt: 'Entrega personal · Barranquilla' },
   { src: 'video/entrega.mp4', tipo: 'video', txt: 'Su Élite Time, recién entregado' },
   { src: 'img/clientes/cliente-2.webp', txt: 'Invicta en caja de impacto' },
@@ -176,7 +177,7 @@ function chrome() {
       <div><a class="logo" href="index.html"><img src="img/marca/logo.webp" alt="" style="height:54px"><span><b>ÉLITE</b><small>TIME · BQ</small></span></a><p class="lead" style="margin-top:18px;font-size:.95rem">Relojes para quienes marcan la diferencia. Relojería y perfumería original desde Barranquilla para toda Colombia.</p></div>
       <div><h4>Tienda</h4><ul>${PAGES.slice(1).map(([h, t]) => `<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
       <div><h4>Marcas</h4><ul>${Object.keys(BRANDS).map(b => `<li><a href="coleccion.html#${BRANDS[b].slug}">${b}</a></li>`).join('')}</ul></div>
-      <div><h4>Pedidos</h4><p class="phone">${E.phoneHTML()}</p><ul style="margin-top:12px"><li><a href="https://www.instagram.com/elitetimebq/" target="_blank" rel="noopener">Instagram · @elitetimebq</a></li><li><a href="https://www.tiktok.com/@elitetimebq" target="_blank" rel="noopener">TikTok · @elitetimebq</a></li><li><a href="https://www.facebook.com/share/1DhSsEF17G/" target="_blank" rel="noopener">Facebook · Elite Time bq</a></li></ul></div>
+      <div><h4>Pedidos</h4><p class="phone">${E.phoneHTML()}</p><ul style="margin-top:12px"><li><a href="https://www.instagram.com/elitetimebq/" target="_blank" rel="noopener">Instagram · @elitetimebq</a></li><li><a href="https://www.tiktok.com/@elitetimebaq" target="_blank" rel="noopener">TikTok · @elitetimebaq</a></li><li><a href="https://www.facebook.com/share/1DhSsEF17G/" target="_blank" rel="noopener">Facebook · Elite Time bq</a></li></ul></div>
     </div>
     <div class="foot-word" aria-hidden="true" data-parallax="-.08">ÉLITE TIME</div>
     <div class="wrap legal"><span>© ${new Date().getFullYear()} Élite Time · Barranquilla, Colombia</span><span>Relojería original</span></div>

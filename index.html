@@ -14,7 +14,9 @@
 <style>
 /* ---- Inicio ---- */
 .hero{min-height:min(calc(100svh - 34px - var(--head-h)),920px);display:grid;align-items:center;padding-block:clamp(30px,5vw,60px);position:relative;isolation:isolate;overflow:hidden}
-.hero .bg{position:absolute;inset:-12% 0;z-index:-3;background:url(img/marca/textura.webp) center/cover;opacity:.3;mask-image:linear-gradient(#000 50%,transparent)}
+/* portada: foto de la vitrina del cliente, oscurecida hacia el texto para que se lea */
+.hero .bg{position:absolute;inset:-12% 0;z-index:-3;background:linear-gradient(90deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.8) 38%,rgba(10,10,10,.55) 70%,rgba(10,10,10,.7) 100%),linear-gradient(transparent 55%,#0a0a0a 96%),url(img/marca/portada.webp) center 40%/cover}
+@media (max-width:900px){.hero .bg{background:linear-gradient(rgba(10,10,10,.6),rgba(10,10,10,.82) 45%,#0a0a0a 92%),url(img/marca/portada.webp) center 30%/cover}}
 .hero .glow{position:absolute;right:-15%;top:-20%;width:80vw;max-width:1100px;aspect-ratio:1;z-index:-2;background:radial-gradient(closest-side,rgba(202,174,118,.18),transparent 70%)}
 .hero .giant{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:-1;font-family:var(--f-display);font-size:clamp(9rem,30vw,30rem);line-height:.8;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(202,174,118,.13);white-space:nowrap;pointer-events:none}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,70px);align-items:center}
@@ -125,6 +127,27 @@
 .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
 .thumbs img{aspect-ratio:3/4;object-fit:cover;width:100%;border-radius:var(--r)}
 
+/* presentación: tula reutilizable */
+.tula{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,80px);align-items:center}
+@media (max-width:900px){.tula{grid-template-columns:1fr}}
+.tula .photo{margin:0;aspect-ratio:3/4;border-radius:var(--r-lg)}
+.tula .photo img{width:100%;height:100%;object-fit:cover}
+.tula .copy{display:grid;gap:20px}
+.tula .row2{display:grid;grid-template-columns:1fr auto;gap:clamp(16px,3vw,32px);align-items:end}
+@media (max-width:560px){.tula .row2{grid-template-columns:1fr}}
+.incl-list{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.incl-list li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.incl-list b{font-weight:600}
+.incl-list span{color:var(--mute);text-align:right}
+.tvid{position:relative;width:min(220px,60vw);aspect-ratio:9/16;border-radius:var(--r);overflow:hidden;background:#000;border:1px solid var(--line);justify-self:center}
+.tvid video{width:100%;height:100%;object-fit:cover}
+.tvid .pl{position:absolute;inset:0;border:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.75));display:grid;place-items:center;cursor:pointer}
+.tvid .pl span{width:62px;height:62px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;transition:transform .4s var(--ease)}
+.tvid .pl:hover span{transform:scale(1.1)}
+.tvid .pl svg{width:22px;margin-left:3px}
+.tvid .pl b{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.14em;color:#f7f4ee}
+.tvid.on .pl{display:none}
+
 /* perfumes banda */
 .pband{border-radius:var(--r-lg);border:1px solid var(--line);overflow:hidden;position:relative;padding:clamp(34px,6vw,80px);display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:30px;background:radial-gradient(70% 120% at 85% 50%,rgba(202,174,118,.16),transparent 60%),var(--ink-2)}
 @media (max-width:760px){.pband{grid-template-columns:1fr}}
@@ -225,6 +248,28 @@
     </div>
   </section>
 
+  <section class="sec light" id="tula">
+    <div class="wrap tula">
+      <figure class="photo reveal-img"><img src="img/tula/tula.webp" alt="Tulas reutilizables negras con el logo dorado de Élite Time" loading="lazy"></figure>
+      <div class="copy">
+        <span class="eyebrow">La presentación</span>
+        <h2 class="h-lg" data-split>Tu reloj llega en <em class="gold">nuestra tula.</em></h2>
+        <p class="lead" data-reveal>Entregamos cada reloj en su caja original, dentro de una tula reutilizable Élite Time. La pensamos en nuestros clientes, para que le den un segundo uso.</p>
+        <div class="row2">
+          <ul class="incl-list" data-stagger>
+            <li><b>Caja original</b><span>Incluida</span></li>
+            <li><b>Tula reutilizable</b><span>Incluida</span></li>
+            <li><b>Caja de impacto</b><span>Opcional · Invicta y Technomarine</span></li>
+          </ul>
+          <div class="tvid" id="tvid" data-reveal>
+            <video id="tulaV" src="video/tula.mp4#t=0.5" preload="metadata" playsinline></video>
+            <button class="pl" id="tulaPlay" aria-label="Ver el video de la tula"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>VER LA TULA</b></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="marquee rev" aria-hidden="true"><div class="track" id="mq2"></div></div>
 
   <section class="sec bg-waves light">
@@ -237,7 +282,7 @@
         <span class="eyebrow">Clientes Élite</span>
         <h2 class="h-lg" data-split style="margin-top:18px">Ellos ya <em class="gold">marcan la diferencia.</em></h2>
         <p class="lead" data-reveal style="margin-top:20px">Sin actores ni montajes: clientes reales recibiendo su reloj en Barranquilla.</p>
-        <div class="thumbs" data-stagger><img src="img/clientes/cliente-1.webp" alt="Cliente con su reloj" loading="lazy"><img src="img/clientes/cliente-2.webp" alt="Cliente con caja de impacto Invicta" loading="lazy"><img src="img/clientes/cliente-3.webp" alt="Dos clientes con sus relojes" loading="lazy"></div>
+        <div class="thumbs" data-stagger><img src="img/clientes/cliente-4.webp" alt="Cliente con su Invicta Racing naranja" loading="lazy"><img src="img/clientes/cliente-1.webp" alt="Cliente con su reloj" loading="lazy"><img src="img/clientes/cliente-2.webp" alt="Cliente con caja de impacto Invicta" loading="lazy"></div>
         <div data-reveal style="margin-top:26px"><a class="btn ghost" href="clientes.html">Ver todos los clientes</a></div>
       </div>
     </div>
@@ -276,6 +321,7 @@ Elite.ready(d => {
   $('#btiles').addEventListener('pointermove', e => { const t = e.target.closest('.btile'); if (!t) return; const r = t.getBoundingClientRect(); t.style.setProperty('--mx', e.clientX - r.left + 'px'); t.style.setProperty('--my', e.clientY - r.top + 'px') });
 
   /* video */
+  const tl = $('#tulaV'); $('#tulaPlay').onclick = () => { tl.controls = true; tl.currentTime = 0; tl.play().catch(() => {}); $('#tvid').classList.add('on') };
   const tv = $('#tv'); $('#tvPlay').onclick = () => { tv.controls = true; tv.currentTime = 0; tv.play().catch(() => {}); $('#vid').classList.add('on') };
 
   /* manifiesto palabra por palabra */
