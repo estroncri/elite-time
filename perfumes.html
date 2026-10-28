@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Perfumes · Élite Time</title>
+<meta name="description" content="Muy pronto: perfumería original en Élite Time, Barranquilla.">
+<meta name="theme-color" content="#121110">
+<link rel="icon" href="img/marca/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Jost:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/elite.css">
+<style>
+.ph{position:relative;min-height:min(calc(100svh - 110px),860px);display:grid;align-items:center;overflow:hidden;isolation:isolate}
+.ph canvas{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.ph-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media (max-width:860px){.ph-grid{grid-template-columns:1fr}.ph{min-height:0;padding-block:40px 80px}}
+.soon{display:inline-flex;gap:10px;align-items:center;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--gold-2);color:var(--gold);padding:.55em 1em;border-radius:999px}
+.soon i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.2}}
+.flacon{justify-self:center;width:min(300px,62vw);aspect-ratio:3/4;position:relative;transform-style:preserve-3d}
+.flacon .cap{position:absolute;left:30%;right:30%;top:0;height:21%;border-radius:8px;background:linear-gradient(90deg,#5d4c2c,var(--gold-3),#8f7442 60%,#5d4c2c);box-shadow:0 10px 20px rgba(0,0,0,.4)}
+.flacon .neck{position:absolute;left:41%;right:41%;top:20%;height:7%;background:linear-gradient(90deg,#2a2620,#4a443a,#2a2620)}
+.flacon .body{position:absolute;inset:26% 6% 0;border-radius:22px;background:linear-gradient(120deg,rgba(237,230,217,.2),rgba(237,230,217,.03) 40%,rgba(202,174,118,.22));border:1px solid rgba(237,230,217,.25);display:grid;place-items:center;overflow:hidden;backdrop-filter:blur(3px);box-shadow:inset 0 0 40px rgba(202,174,118,.15),0 60px 80px -30px rgba(0,0,0,.8)}
+.flacon .liq{position:absolute;inset:auto 0 0;height:56%;background:linear-gradient(rgba(202,174,118,.4),rgba(156,131,80,.65))}
+.flacon .liq::before{content:"";position:absolute;left:-50%;right:-50%;top:-14px;height:28px;background:radial-gradient(50% 50% at 50% 100%,rgba(202,174,118,.45),transparent);border-radius:50%;animation:wave 5s ease-in-out infinite}
+@keyframes wave{50%{transform:translateX(15%) scaleY(1.4)}}
+.flacon .lbl{position:relative;z-index:1;text-align:center;display:grid;gap:4px}
+.flacon .lbl b{font-family:var(--f-display);letter-spacing:.34em;font-weight:500;font-size:1.3rem}
+.flacon .lbl small{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.3em;color:var(--mute)}
+.flacon .shine{position:absolute;top:30%;left:14%;width:10%;height:52%;border-radius:999px;background:linear-gradient(rgba(255,255,255,.28),transparent);filter:blur(2px)}
+.notify{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--ink-2);padding:clamp(24px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,60px)}
+@media (max-width:860px){.notify{grid-template-columns:1fr}}
+.fams{display:flex;flex-wrap:wrap;gap:8px}
+.notify form{display:grid;gap:14px;align-content:start}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.notes div{background:var(--ink);padding:clamp(22px,3vw,40px);display:grid;gap:10px}
+.notes b{font-family:var(--f-display);font-style:italic;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:var(--gold)}
+.notes p{margin:0;color:var(--mute)}
+@media (max-width:760px){.notes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+  <section class="ph">
+    <canvas id="mist" aria-hidden="true"></canvas>
+    <div class="wrap ph-grid">
+      <div>
+        <nav class="crumbs" aria-label="Ruta" data-reveal><a href="index.html">Inicio</a><span>Perfumes</span></nav>
+        <div style="margin-top:28px" data-reveal><span class="soon"><i></i>Próximamente</span></div>
+        <h1 class="h-xl" data-split style="margin-top:22px">Perfumería <em class="gold">original.</em></h1>
+        <p class="lead" data-reveal=".2" style="margin-top:22px">Élite Time suma fragancias originales a su catálogo. Mismo estándar que en relojería: producto original y atención directa por WhatsApp.</p>
+        <div data-reveal=".3" style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#avisame" data-magnetic>Quiero que me avisen</a><a class="btn ghost" href="coleccion.html">Mientras tanto, ver relojes</a></div>
+      </div>
+      <div class="flacon" id="flacon" aria-hidden="true"><div class="cap"></div><div class="neck"></div><div class="body"><div class="liq"></div><div class="lbl"><b>ÉLITE</b><small>EAU DE PARFUM</small></div><div class="shine"></div></div></div>
+    </div>
+  </section>
+
+  <section class="sec bg-rosette">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">Lo que buscamos</span><h2 class="h-lg" data-split>Un perfume que <em class="gold">acompañe tu reloj.</em></h2></div></div>
+      <div class="notes" data-stagger>
+        <div><b>Original</b><p>Solo fragancias originales, como en nuestra relojería.</p></div>
+        <div><b>Directo</b><p>Pides por WhatsApp y te asesoramos según tu estilo.</p></div>
+        <div><b>A domicilio</b><p>Entrega en Barranquilla y envíos a toda Colombia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0" id="avisame">
+    <div class="wrap notify">
+      <div><span class="eyebrow">Lista de espera</span><h2 class="h-md" data-split style="margin-top:16px">Sé el primero en <em class="gold">saberlo.</em></h2><p class="lead" data-reveal style="margin-top:18px">Cuéntanos qué tipo de fragancia te gusta. Al tocar el botón se abre WhatsApp con tu mensaje listo.</p></div>
+      <form id="nf">
+        <div class="field"><label for="nName">Tu nombre</label><input id="nName" autocomplete="name" placeholder="Ej. Carlos"></div>
+        <div class="field"><label>Familias que te gustan</label><div class="fams" id="fams"></div></div>
+        <div class="field"><label for="nFor">Para</label><select id="nFor"><option>Para mí</option><option>Para regalar</option></select></div>
+        <a class="btn" id="nGo" href="#" target="_blank" rel="noopener">Avisarme por WhatsApp</a>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/js/elite.js"></script>
+<script>
+Elite.ready(d => {
+  const {$, $$, reduce, fine} = Elite;
+  const fams = ['Amaderadas', 'Cítricas', 'Dulces', 'Frescas', 'Orientales', 'Florales'], sel = new Set();
+  $('#fams').innerHTML = fams.map(f => `<button type="button" class="chip" data-f="${f}" aria-pressed="false">${f}</button>`).join('');
+  const upd = () => $('#nGo').href = Elite.wa(`Hola Élite Time${$('#nName').value.trim() ? ', soy ' + $('#nName').value.trim() : ''}. Quiero que me avisen cuando lleguen los perfumes originales${sel.size ? '. Me gustan las fragancias ' + [...sel].join(', ').toLowerCase() : ''}. Es ${$('#nFor').value.toLowerCase()}.`);
+  $('#fams').onclick = e => { const b = e.target.closest('[data-f]'); if (!b) return; sel.has(b.dataset.f) ? sel.delete(b.dataset.f) : sel.add(b.dataset.f); b.setAttribute('aria-pressed', sel.has(b.dataset.f)); upd() };
+  $('#nName').oninput = upd; $('#nFor').onchange = upd; $('#nf').onsubmit = e => e.preventDefault(); upd();
+  /* frasco: entra, flota y gira con el puntero o el scroll */
+  const f = $('#flacon');
+  if (window.gsap && !reduce) {
+    gsap.from(f, { y: 120, rotate: 10, opacity: 0, duration: 1.8, ease: 'expo.out', delay: .2 });
+    gsap.to(f, { y: -14, duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    gsap.to('#flacon .liq', { height: '38%', ease: 'none', scrollTrigger: { trigger: '.ph', start: 'top top', end: 'bottom top', scrub: true } });
+    if (fine) addEventListener('pointermove', e => gsap.to(f, { rotateY: (e.clientX / innerWidth - .5) * 30, rotateX: -(e.clientY / innerHeight - .5) * 14, duration: 1, ease: 'power3.out', transformPerspective: 900 }));
+  }
+  /* niebla dorada de partículas */
+  const c = $('#mist'), x = c.getContext('2d'); let W, H, pts;
+  const size = () => { W = c.width = c.offsetWidth * devicePixelRatio; H = c.height = c.offsetHeight * devicePixelRatio; pts = Array.from({ length: Math.min(90, Math.round(W / 14)) }, () => ({ x: Math.random() * W, y: Math.random() * H, r: (Math.random() * 2 + .4) * devicePixelRatio, v: Math.random() * .4 + .1, a: Math.random() * .5 + .1 })) };
+  size(); addEventListener('resize', size);
+  (function draw() {
+    x.clearRect(0, 0, W, H);
+    const g = x.createRadialGradient(W * .72, H * .45, 0, W * .72, H * .45, W * .5); g.addColorStop(0, 'rgba(202,174,118,.14)'); g.addColorStop(1, 'rgba(202,174,118,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+    pts.forEach(p => { if (!reduce) { p.y -= p.v; p.x += Math.sin(p.y / 60) * .3; if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W } } x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fillStyle = `rgba(233,214,168,${p.a})`; x.fill() });
+    if (!reduce) requestAnimationFrame(draw);
+  })();
+});
+</script>
+</body>
+</html>

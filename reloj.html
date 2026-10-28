@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reloj · Élite Time</title>
+<meta name="theme-color" content="#121110">
+<link rel="icon" href="img/marca/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Jost:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/elite.css">
+<style>
+.pd{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,80px);align-items:start;padding-block:clamp(20px,3vw,40px) clamp(60px,8vw,110px)}
+@media (max-width:900px){.pd{grid-template-columns:1fr}}
+.pd-stage{position:sticky;top:calc(var(--head-h) + 20px);border-radius:var(--r-lg);border:1px solid var(--line);overflow:hidden;aspect-ratio:1;display:grid;place-items:center;background:radial-gradient(70% 60% at 50% 42%,#332d24,var(--ink-2) 72%);cursor:zoom-in;isolation:isolate}
+@media (max-width:900px){.pd-stage{position:relative;top:0}}
+.pd-stage .ring{position:absolute;inset:9%;border-radius:50%;border:1px dashed var(--line-2);z-index:-1;animation:spin 60s linear infinite}
+.pd-stage .ring::after{content:"";position:absolute;inset:8%;border-radius:50%;border:1px solid var(--line)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pd-stage img{position:absolute;inset:11%;width:78%;height:78%;object-fit:contain;filter:drop-shadow(0 40px 46px rgba(0,0,0,.7));transition:transform .25s ease-out;will-change:transform}
+.pd-stage.zoom img{transform:scale(2.1)}
+.pd-stage .bgname{position:absolute;bottom:4%;left:0;right:0;text-align:center;font-family:var(--f-display);font-size:clamp(3rem,9vw,8rem);line-height:.8;color:transparent;-webkit-text-stroke:1px var(--line);z-index:-1;white-space:nowrap;letter-spacing:.06em}
+.pd-stage .hint{position:absolute;right:14px;bottom:14px;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;color:var(--dim)}
+.pd-info{display:grid;gap:22px;min-width:0}
+.pd-info h1{font-size:clamp(2.4rem,5vw,4.4rem)}
+.price-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.price-row .p{font-family:var(--f-mono);font-size:clamp(1.6rem,3vw,2.2rem)}
+.badge{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.4em .8em;border-radius:999px;border:1px solid}
+.badge.ok{color:var(--ok);border-color:rgba(143,181,154,.4)}
+.badge.no{color:var(--bad);border-color:rgba(208,139,127,.4)}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.specs div{padding:14px 16px;border-right:1px solid var(--line);display:grid;gap:4px}
+.specs div:last-child{border-right:0}
+.specs small{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.specs b{font-weight:500;font-size:.95rem}
+@media (max-width:520px){.specs{grid-template-columns:1fr 1fr}.specs div:nth-child(2){border-right:0}.specs div:nth-child(3){grid-column:1/-1;border-top:1px solid var(--line)}}
+.opt h3{font-family:var(--f-mono);font-weight:400;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;display:flex;justify-content:space-between}
+.boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.boxopt{border:1px solid var(--line);border-radius:var(--r);padding:14px;text-align:left;background:var(--ink-2);cursor:pointer;display:grid;gap:4px;transition:border-color .3s,transform .4s var(--ease)}
+.boxopt:hover{transform:translateY(-2px)}
+.boxopt b{font-weight:500}
+.boxopt span{font-size:.78rem;color:var(--mute)}
+.boxopt[aria-pressed="true"]{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+@media (max-width:520px){.boxes{grid-template-columns:1fr}}
+.buy{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.qty-l{display:flex;align-items:center;border:1px solid var(--line-2);border-radius:999px}
+.qty-l button{width:44px;height:52px;border:0;background:none;cursor:pointer;font-size:1.1rem;color:var(--bone)}
+.qty-l span{min-width:28px;text-align:center;font-family:var(--f-mono)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.list li{display:flex;gap:12px;color:var(--mute)}
+.list li::before{content:"";flex:none;width:7px;height:7px;margin-top:.6em;border:1px solid var(--gold);transform:rotate(45deg)}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.perks div{border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:6px;font-size:.84rem;color:var(--mute)}
+.perks svg{width:22px;color:var(--gold)}
+.perks b{color:var(--bone);font-weight:500;font-size:.92rem}
+@media (max-width:520px){.perks{grid-template-columns:1fr}}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:18px 0;cursor:pointer;font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-mono);font-size:1.2rem;color:var(--gold);transition:transform .4s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0 0 18px;color:var(--mute)}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:65;background:rgba(26,24,21,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px var(--gut-r) calc(12px + env(safe-area-inset-bottom,0px)) var(--gut);display:none;gap:12px;align-items:center;transform:translateY(110%);transition:transform .5s var(--ease)}
+.mbar.on{transform:none}
+.mbar .p{font-family:var(--f-mono);font-size:1.05rem}
+.mbar small{display:block;color:var(--mute);font-size:.75rem;max-width:40vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:900px){.mbar{display:flex}.mbar .btn{flex:1}body.has-mbar .wa-fab{bottom:calc(92px + env(safe-area-inset-bottom,0px))}}
+.rel{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,23%);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}
+.rel .pcard{scroll-snap-align:start}
+@media (max-width:700px){.rel{grid-auto-columns:70%}}
+.nf{padding:120px 0;text-align:center;display:grid;gap:18px;justify-items:center}
+</style>
+</head>
+<body>
+<main>
+  <div class="wrap" style="padding-top:clamp(20px,3vw,34px)"><nav class="crumbs" aria-label="Ruta" id="crumbs"><a href="index.html">Inicio</a><span><a href="coleccion.html">Colección</a></span></nav></div>
+  <div class="wrap pd" id="pd"></div>
+  <section class="sec bg-gold" id="relSec">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">También te puede gustar</span><h2 class="h-md" data-split>Más de <em class="gold" id="relBrand">la marca</em></h2></div><a class="btn ghost" href="coleccion.html" id="relAll">Ver todos</a></div>
+      <div class="rel" id="rel"></div>
+    </div>
+  </section>
+  <div class="mbar" id="mbar"><div><span class="p" id="mbP"></span><small id="mbN"></small></div><button class="btn" id="mbAdd">Agregar al carrito</button></div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/js/elite.js"></script>
+<script>
+Elite.ready(d => {
+  const {$, $$, esc, fmt, ICON, BRANDS} = Elite;
+  const p = Elite.byId(decodeURIComponent(location.hash.slice(1))) || d.productos.find(x => x.destacado) ;
+  if (!p) { $('#pd').innerHTML = `<div class="nf" style="grid-column:1/-1"><h1 class="h-md">No encontramos ese reloj.</h1><a class="btn" href="coleccion.html">Volver a la colección</a></div>`; $('#relSec').hidden = true; return }
+  document.title = `${p.marca} ${p.modelo} · Élite Time`;
+  const sold = p.disponible === false, isInv = p.marca === 'Invicta';
+  const ref = (p.modelo.match(/[A-Z]*-?\d[\w-]*/g) || []).pop() || '—';
+  const line = p.modelo.replace(/\(.*?\)/g, '').replace(ref, '').trim() || p.modelo;
+  const boxes = isInv ? [['Estándar', 'Incluida'], ['Premium', 'Incluida según disponibilidad'], ['De impacto', 'Costo adicional · consultar']] : [['Original', 'Incluida']];
+  let caja = boxes[0][0], qty = 1;
+  $('#crumbs').insertAdjacentHTML('beforeend', `<span><a href="coleccion.html#${BRANDS[p.marca]?.slug || ''}">${esc(p.marca)}</a></span><span>${esc(p.modelo)}</span>`);
+  $('#pd').innerHTML = `
+  <div class="pd-stage" id="stage" data-fly>
+    <div class="ring"></div><div class="bgname" aria-hidden="true">${esc(p.marca.toUpperCase())}</div>
+    ${sold ? '<span class="tag">Agotado</span>' : p.destacado ? '<span class="tag gold">Destacado</span>' : ''}
+    <img src="${esc(p.imagen)}" alt="${esc(p.marca + ' ' + p.modelo)}" id="pimg"><span class="hint">${Elite.fine ? 'TOCA PARA AMPLIAR' : ''}</span>
+  </div>
+  <div class="pd-info">
+    <span class="eyebrow" data-reveal>${esc(p.marca)} · ${esc(p.genero)}</span>
+    <h1 data-split>${esc(p.modelo)}</h1>
+    <div class="price-row" data-reveal=".15"><span class="p">${fmt(p.precio)}</span><span class="badge ${sold ? 'no' : 'ok'}">${sold ? 'Agotado' : 'Disponible'}</span></div>
+    <div class="specs" data-reveal=".2"><div><small>Línea</small><b>${esc(line)}</b></div><div><small>Referencia</small><b class="mono">${esc(ref)}</b></div><div><small>Para</small><b>${esc(p.genero)}</b></div></div>
+    <div class="opt" data-reveal=".25"><h3><span>Caja</span><span style="color:var(--gold)" id="cajaL">${caja}</span></h3><div class="boxes" id="boxes">${boxes.map(([b, s], i) => `<button class="boxopt" data-box="${b}" aria-pressed="${i === 0}"><b>${b}</b><span>${s}</span></button>`).join('')}</div></div>
+    <div class="buy" data-reveal=".3">
+      <div class="qty-l"><button id="qm" aria-label="Menos">−</button><span id="qv">1</span><button id="qp" aria-label="Más">+</button></div>
+      <button class="btn" id="add" ${sold ? 'disabled' : ''} data-magnetic>${ICON.bag}${sold ? 'Agotado' : 'Agregar al carrito'}</button>
+    </div>
+    <div data-reveal=".35"><a class="btn ghost block" id="now" href="#" target="_blank" rel="noopener">${ICON.wa}${sold ? 'Preguntar cuándo llega' : 'Comprar ahora por WhatsApp'}</a></div>
+    <div class="perks" data-stagger>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><b>Garantía 1 año</b>Maquinaria y batería</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg><b>Envío nacional</b>Inmediato en Barranquilla</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg><b>Contra entrega</b>Barranquilla y Soledad</div>
+    </div>
+    <div data-reveal>
+      <details open><summary>Características</summary><ul class="list" style="margin-bottom:18px">${Elite.specs(p).map(s => `<li>${esc(s)}</li>`).join('')}</ul></details>
+      <details><summary>Garantía</summary><p>Relojería totalmente original con garantía de 1 año por maquinaria y batería.</p></details>
+      <details><summary>Envío y pago</summary><p>Envíos a todo el país. Entrega inmediata en Barranquilla. Pago contra entrega en Barranquilla y Soledad, o por transferencia.</p></details>
+    </div>
+  </div>`;
+  const msg = () => sold ? `Hola Élite Time, ¿cuándo vuelve a estar disponible el ${p.marca} ${p.modelo}?` : `Hola Élite Time, quiero comprar ${qty} × ${p.marca} ${p.modelo}${p.precio ? ' (' + fmt(p.precio) + ')' : ''} con caja ${caja}. ¿Está disponible?`;
+  const upd = () => { $('#qv').textContent = qty; $('#now').href = Elite.wa(msg()); $('#cajaL').textContent = caja };
+  upd();
+  $('#boxes').onclick = e => { const b = e.target.closest('[data-box]'); if (!b) return; caja = b.dataset.box; $$('.boxopt').forEach(x => x.setAttribute('aria-pressed', x === b)); upd() };
+  $('#qm').onclick = () => { qty = Math.max(1, qty - 1); upd() }; $('#qp').onclick = () => { qty++; upd() };
+  const add = e => { if (sold) return; Elite.cart.add(p.id, qty, caja, $('#stage').querySelector('img').closest('[data-fly]') && $('#pimg')) };
+  $('#add').onclick = add; $('#mbAdd').onclick = add;
+  /* lupa al pasar el mouse */
+  const st = $('#stage'), im = $('#pimg');
+  st.addEventListener('click', () => st.classList.toggle('zoom'));
+  st.addEventListener('pointermove', e => { const r = st.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 100, y = (e.clientY - r.top) / r.height * 100; im.style.transformOrigin = `${x}% ${y}%`; if (!st.classList.contains('zoom') && Elite.fine && !Elite.reduce) im.style.transform = `perspective(800px) rotateY(${(x - 50) / 5}deg) rotateX(${(50 - y) / 5}deg) scale(1.04)` });
+  st.addEventListener('pointerleave', () => { st.classList.remove('zoom'); im.style.transform = '' });
+  if (window.gsap && !Elite.reduce) gsap.from(im, { scale: .6, rotate: -20, opacity: 0, duration: 1.6, ease: 'expo.out', delay: .1 });
+  /* barra móvil */
+  $('#mbP').textContent = fmt(p.precio); $('#mbN').textContent = p.modelo; $('#mbAdd').disabled = sold; if (sold) $('#mbAdd').textContent = 'Agotado';
+  document.body.classList.add('has-mbar');
+  const io = new IntersectionObserver(([en]) => $('#mbar').classList.toggle('on', !en.isIntersecting && en.boundingClientRect.top < 0)); io.observe($('#add'));
+  /* relacionados */
+  let R = d.productos.filter(x => x.marca === p.marca && x.id !== p.id); R = R.filter(x => x.genero === p.genero).concat(R.filter(x => x.genero !== p.genero)).slice(0, 10);
+  if (R.length < 4) R = R.concat(d.productos.filter(x => x.id !== p.id && !R.includes(x)).slice(0, 8 - R.length));
+  $('#rel').innerHTML = R.map(Elite.card).join(''); $('#relBrand').textContent = p.marca; $('#relAll').href = 'coleccion.html#' + (BRANDS[p.marca]?.slug || '');
+  addEventListener('hashchange', () => location.reload());
+});
+</script>
+</body>
+</html>

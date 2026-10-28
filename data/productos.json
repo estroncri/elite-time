@@ -1,0 +1,1202 @@
+[
+ {
+  "id": "r001",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 0073",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p04-1.webp",
+  "destacado": true,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r002",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 0072",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p04-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r003",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 0074",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p04-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r004",
+  "marca": "Invicta",
+  "modelo": "I-Force 3332",
+  "precio": 485000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p05-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r005",
+  "marca": "Invicta",
+  "modelo": "Specialty 47375",
+  "precio": 630000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p05-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r006",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 47179",
+  "precio": 460000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p05-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r007",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 26973",
+  "precio": 460000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p06-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r008",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 6977",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p06-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r009",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 20290",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p06-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r010",
+  "marca": "Invicta",
+  "modelo": "Speedway Gearshift 49376",
+  "precio": 460000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p07-1.webp",
+  "destacado": true,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r011",
+  "marca": "Invicta",
+  "modelo": "Pro Diver (sin referencia)",
+  "precio": 460000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p07-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r012",
+  "marca": "Invicta",
+  "modelo": "Pro Diver Cronógrafo 37229",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p07-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r013",
+  "marca": "Invicta",
+  "modelo": "Speedway 46846",
+  "precio": 460000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p08-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r014",
+  "marca": "Invicta",
+  "modelo": "Specialty 1269",
+  "precio": 480000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p08-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r015",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 46041",
+  "precio": 495000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p08-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r016",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 47578",
+  "precio": 500000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p09-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r017",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 47193",
+  "precio": 520000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p09-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r018",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 47220",
+  "precio": 370000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p09-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r019",
+  "marca": "Technomarine",
+  "modelo": "Ocean Quantum TM-318120",
+  "precio": 590000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p10-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r020",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 0071",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p10-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r021",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 47220 (2)",
+  "precio": 590000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p10-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r022",
+  "marca": "Invicta",
+  "modelo": "Speedway 26298",
+  "precio": 495000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p11-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r023",
+  "marca": "Invicta",
+  "modelo": "Specialty 29378",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p11-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r024",
+  "marca": "Invicta",
+  "modelo": "Aviator 47819",
+  "precio": 495000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p11-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r025",
+  "marca": "Invicta",
+  "modelo": "Specialty 48379",
+  "precio": 475000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p12-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r026",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 47631",
+  "precio": 485000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p12-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r027",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 47223",
+  "precio": 355000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p12-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r028",
+  "marca": "Invicta",
+  "modelo": "Racing Rojo 48448",
+  "precio": 530000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p13-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r029",
+  "marca": "Invicta",
+  "modelo": "Racing Naranja 48446",
+  "precio": 530000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p13-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r030",
+  "marca": "Invicta",
+  "modelo": "Racing Amarillo 48449",
+  "precio": 530000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p13-3.webp",
+  "destacado": true,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r031",
+  "marca": "Invicta",
+  "modelo": "Aviator 28122",
+  "precio": 525000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p14-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r032",
+  "marca": "Invicta",
+  "modelo": "Sea Vulture 47823",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p14-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r033",
+  "marca": "Invicta",
+  "modelo": "Sea Vulture 47822",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p14-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r034",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 22808",
+  "precio": 495000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p15-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r035",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 48376",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p15-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r036",
+  "marca": "Invicta",
+  "modelo": "Specialty 48898",
+  "precio": 420000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p15-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r037",
+  "marca": "Invicta",
+  "modelo": "Speedway 49107",
+  "precio": 385000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p16-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r038",
+  "marca": "Invicta",
+  "modelo": "Racing 48448 (2)",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p16-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r039",
+  "marca": "Invicta",
+  "modelo": "Specialty 49098",
+  "precio": 420000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p16-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r040",
+  "marca": "Invicta",
+  "modelo": "Specialty 14877",
+  "precio": 480000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p17-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r041",
+  "marca": "Invicta",
+  "modelo": "Specialty 47405",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p17-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r042",
+  "marca": "Invicta",
+  "modelo": "Specialty 47507",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p17-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r043",
+  "marca": "Invicta",
+  "modelo": "Vintage 46660",
+  "precio": 385000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p18-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r044",
+  "marca": "Invicta",
+  "modelo": "Aviator 22523",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p18-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r045",
+  "marca": "Invicta",
+  "modelo": "Vintage (sin referencia)",
+  "precio": 395000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p18-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r046",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 20292",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p19-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r047",
+  "marca": "Invicta",
+  "modelo": "I-Force 19252",
+  "precio": 485000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p19-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r048",
+  "marca": "Invicta",
+  "modelo": "Speedway 46832",
+  "precio": 345000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p19-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r049",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 17566",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p20-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r050",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 44521",
+  "precio": 580000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p20-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r051",
+  "marca": "Invicta",
+  "modelo": "Specialty 49095",
+  "precio": 485000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p20-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r052",
+  "marca": "Invicta",
+  "modelo": "Speedway 3644",
+  "precio": 480000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p21-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r053",
+  "marca": "Invicta",
+  "modelo": "Speedway Gearshift 49363",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p21-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r054",
+  "marca": "Technomarine",
+  "modelo": "Ocean Nomad TM-318097",
+  "precio": 590000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p21-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r055",
+  "marca": "Invicta",
+  "modelo": "Speedway 46855",
+  "precio": 530000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p22-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r056",
+  "marca": "Invicta",
+  "modelo": "Speedway 49121",
+  "precio": 465000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p22-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r057",
+  "marca": "Invicta",
+  "modelo": "Pro Diver Scuba 25852",
+  "precio": 530000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p22-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r058",
+  "marca": "Invicta",
+  "modelo": "Aviator 33033",
+  "precio": 440000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p23-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r059",
+  "marca": "Technomarine",
+  "modelo": "Coral TM-416077",
+  "precio": 630000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p23-2.webp",
+  "destacado": true,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r060",
+  "marca": "Technomarine",
+  "modelo": "Cruise TM-118133",
+  "precio": 630000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p23-3.webp",
+  "destacado": true,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r061",
+  "marca": "Poedagar",
+  "modelo": "Fondo Azul",
+  "precio": 120000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p24-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r062",
+  "marca": "Poedagar",
+  "modelo": "Fondo Verde",
+  "precio": 120000,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p24-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r063",
+  "marca": "Poedagar",
+  "modelo": "Fondo Blanco",
+  "precio": null,
+  "genero": "Hombre",
+  "imagen": "img/relojes/p24-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r064",
+  "marca": "Invicta",
+  "modelo": "Wildflower 48230",
+  "precio": 350000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p25-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r065",
+  "marca": "Invicta",
+  "modelo": "Angel 37347",
+  "precio": 485000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p25-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r066",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 12851",
+  "precio": 435000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p25-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r067",
+  "marca": "Invicta",
+  "modelo": "Women's Angel 24901",
+  "precio": 485000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p26-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r068",
+  "marca": "Invicta",
+  "modelo": "Angel 48145",
+  "precio": 365000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p26-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r069",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 8936OB",
+  "precio": 445000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p26-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r070",
+  "marca": "Invicta",
+  "modelo": "Angel 48994",
+  "precio": 395000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p27-1.webp",
+  "destacado": true,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r071",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 20215",
+  "precio": 455000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p27-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r072",
+  "marca": "Invicta",
+  "modelo": "Pro Diver 15251",
+  "precio": 445000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p27-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r073",
+  "marca": "Invicta",
+  "modelo": "Wildflower 48235",
+  "precio": 365000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p28-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r074",
+  "marca": "Invicta",
+  "modelo": "Angel 48849",
+  "precio": 415000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p28-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r075",
+  "marca": "Invicta",
+  "modelo": "Wildflower 0133",
+  "precio": 395000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p28-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r076",
+  "marca": "Invicta",
+  "modelo": "Specialty 47463",
+  "precio": 415000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p29-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r077",
+  "marca": "Invicta",
+  "modelo": "Lupah",
+  "precio": 455000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p29-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r078",
+  "marca": "Invicta",
+  "modelo": "Blu 24189",
+  "precio": 495000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p29-3.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r079",
+  "marca": "Invicta",
+  "modelo": "Wildflower 48226",
+  "precio": 355000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p30-1.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ },
+ {
+  "id": "r080",
+  "marca": "Invicta",
+  "modelo": "Mini Necklace",
+  "precio": 290000,
+  "genero": "Mujer",
+  "imagen": "img/relojes/p30-2.webp",
+  "destacado": false,
+  "disponible": true,
+  "specs": [
+   "Movimiento de cuarzo",
+   "Acero inoxidable",
+   "Resistente al agua"
+  ]
+ }
+]

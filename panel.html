@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Panel · Élite Time</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121110">
+<link rel="icon" href="img/marca/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Jost:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/elite.css">
+<style>
+body::after{display:none}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+@media (max-width:900px){.app{grid-template-columns:1fr}}
+.side{border-right:1px solid var(--line);background:var(--ink-2);padding:24px 18px calc(24px + env(safe-area-inset-bottom,0px)) var(--gut);display:flex;flex-direction:column;gap:26px;position:sticky;top:0;height:100vh}
+@media (max-width:900px){.side{position:sticky;top:0;height:auto;z-index:20;flex-direction:row;align-items:center;justify-content:space-between;padding:12px var(--gut-r) 12px var(--gut);gap:12px;border-right:0;border-bottom:1px solid var(--line);overflow-x:auto}}
+.side nav{display:grid;gap:4px}
+@media (max-width:900px){.side nav{display:flex;gap:6px}.side .logo span,.side .foot{display:none}}
+.side nav button{display:flex;align-items:center;gap:12px;padding:.75em .9em;border-radius:12px;border:0;background:none;color:var(--mute);cursor:pointer;text-align:left;font-size:.95rem;white-space:nowrap;transition:.25s}
+.side nav button svg{width:18px;height:18px;flex:none}
+.side nav button:hover{color:var(--bone);background:var(--ink-3)}
+.side nav button[aria-selected="true"]{background:var(--ink-4);color:var(--bone);box-shadow:inset 2px 0 0 var(--gold)}
+.side .foot{margin-top:auto;display:grid;gap:8px}
+.mainp{padding:clamp(20px,3vw,40px) var(--gut-r) 80px var(--gut);min-width:0}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.ph h1{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.ph p{margin:6px 0 0;color:var(--mute)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+@media (max-width:800px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--ink-2);display:grid;gap:6px}
+.kpi span{font-size:.8rem;color:var(--mute)}
+.kpi b{font-family:var(--f-mono);font-weight:500;font-size:1.6rem}
+.kpi .bar{height:4px;border-radius:4px;background:var(--ink-4);overflow:hidden}
+.kpi .bar i{display:block;height:100%;background:var(--gold);border-radius:inherit}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tools .input{max-width:320px;border-radius:999px}
+.tools select{width:auto;border-radius:999px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:760px}
+th{text-align:left;font-weight:500;color:var(--mute);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ink-2);position:sticky;top:0}
+td{padding:8px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:hover td{background:rgba(237,230,217,.025)}
+td img{width:46px;height:46px;object-fit:contain;background:var(--ink-3);border-radius:10px;padding:3px}
+.num{font-family:var(--f-mono);text-align:right;white-space:nowrap}
+.pill{display:inline-block;font-size:.72rem;padding:.25em .75em;border-radius:999px;border:1px solid;cursor:pointer;background:none}
+.pill.ok{color:var(--ok);border-color:rgba(143,181,154,.4)}
+.pill.no{color:var(--bad);border-color:rgba(208,139,127,.4)}
+.pill.warn{color:var(--warn);border-color:rgba(216,179,106,.4);cursor:default}
+.mini{background:none;border:1px solid var(--line);border-radius:8px;padding:.38em .75em;cursor:pointer;font-size:.82rem;color:var(--mute)}
+.mini:hover{color:var(--bone);border-color:var(--mute)}
+.mini.danger:hover{color:var(--bad);border-color:var(--bad)}
+.star{background:none;border:0;cursor:pointer;font-size:1.15rem;color:var(--line-2)}
+.star[aria-pressed="true"]{color:var(--gold)}
+.card{border:1px solid var(--line);border-radius:16px;background:var(--ink-2);padding:clamp(18px,3vw,28px);margin-bottom:16px}
+.card h3{font-family:var(--f-body);font-weight:500;font-size:1.1rem;margin-bottom:6px}
+.card > p{color:var(--mute);margin:0 0 16px;font-size:.92rem}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+@media (max-width:640px){.form{grid-template-columns:1fr}}
+.check{display:flex;align-items:center;gap:10px;font-size:.92rem}
+.check input{accent-color:var(--gold);width:18px;height:18px}
+.drop{border:1px dashed var(--line-2);border-radius:14px;padding:16px;display:flex;gap:16px;align-items:center;cursor:pointer;transition:border-color .3s}
+.drop img{width:96px;height:96px;object-fit:contain;background:var(--ink-3);border-radius:12px}
+.drop.over{border-color:var(--gold)}
+.edit-grid{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+@media (max-width:1000px){.edit-grid{grid-template-columns:1fr}}
+.preview{position:sticky;top:20px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:14px}
+.gal figure{margin:0;position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1}
+.gal img,.gal video{width:100%;height:100%;object-fit:cover}
+.gal button{position:absolute;top:6px;right:6px;background:var(--ink)}
+.gate{min-height:100vh;display:grid;place-items:center;padding:24px}
+.gate .box{width:min(400px,100%);display:grid;gap:16px;text-align:center}
+.gate img{height:96px;margin:0 auto}
+.gate input{text-align:center;letter-spacing:.5em;font-family:var(--f-mono);font-size:1.4rem}
+.err{color:var(--bad);font-size:.88rem;min-height:1.3em;margin:0}
+.confirm{display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--bad)}
+.note{font-size:.85rem;color:var(--dim);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <div class="box">
+    <img src="img/marca/logo.webp" alt="Élite Time">
+    <h1 class="h-sm">Panel de administración</h1>
+    <p class="lead" style="margin:0 auto">Ingresa tu PIN para editar productos, fotos y textos de la tienda.</p>
+    <div class="field"><label for="pin">PIN</label><input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="12"></div>
+    <button class="btn" id="pinBtn">Entrar</button>
+    <p class="err" id="pinErr"></p>
+    <a class="link" href="index.html" style="font-size:.9rem;justify-self:center">Volver a la tienda</a>
+  </div>
+</div>
+
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <a class="logo" href="index.html"><img src="img/marca/logo.webp" alt="" width="40" height="40"><span><b>ÉLITE</b><small>PANEL</small></span></a>
+    <nav role="tablist">
+      <button role="tab" data-tab="productos" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="7"/><path d="M12 8v4l2.5 1.5M9 3h6M9 21h6"/></svg>Productos</button>
+      <button role="tab" data-tab="editar" aria-selected="false" id="tabEdit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Nuevo producto</span></button>
+      <button role="tab" data-tab="clientes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-5-8 7"/></svg>Clientes</button>
+      <button role="tab" data-tab="ajustes" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Ajustes</button>
+      <button role="tab" data-tab="datos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>Copia</button>
+    </nav>
+    <div class="foot"><a class="btn ghost sm" href="index.html">Ver tienda</a><button class="mini" id="logout">Cerrar sesión</button></div>
+  </aside>
+
+  <main class="mainp">
+    <section data-pane="productos">
+      <div class="ph"><div><h1>Productos</h1><p>Edita precios, fotos y disponibilidad. Los cambios se ven en la tienda al instante.</p></div><button class="btn" id="addBtn">+ Agregar producto</button></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="tools"><input class="input" id="pq" type="search" placeholder="Buscar producto" aria-label="Buscar producto"><select class="input" id="pBrand" aria-label="Filtrar por marca"></select><select class="input" id="pState" aria-label="Filtrar por estado"><option value="">Todos</option><option value="sin">Sin precio</option><option value="dest">Destacados</option><option value="ago">Agotados</option></select></div>
+      <div class="tbl"><table><thead><tr><th></th><th>Producto</th><th>Marca</th><th>Para</th><th class="num">Precio</th><th>Estado</th><th>Destacado</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+    </section>
+
+    <section data-pane="editar" hidden>
+      <div class="ph"><div><h1 id="eTitle">Nuevo producto</h1><p>Completa los datos y guarda. Puedes volver a editarlo cuando quieras.</p></div></div>
+      <div class="edit-grid">
+        <form id="eForm" class="card form">
+          <div class="field"><label for="eMarca">Marca</label><input id="eMarca" list="marcas" required></div><datalist id="marcas"></datalist>
+          <div class="field"><label for="eModelo">Modelo y referencia</label><input id="eModelo" required placeholder="Pro Diver 0073"></div>
+          <div class="field"><label for="ePrecio">Precio (COP)</label><input id="ePrecio" type="number" min="0" step="1000" placeholder="580000"></div>
+          <div class="field"><label for="eGenero">Para</label><select id="eGenero"><option>Hombre</option><option>Mujer</option><option>Unisex</option></select></div>
+          <div class="field full"><label for="eSpecs">Características (una por línea)</label><textarea id="eSpecs" rows="4"></textarea></div>
+          <div class="field full"><label>Foto</label><label class="drop" id="eDrop" for="eFile"><img id="ePrev" alt=""><span><b>Toca para subir una foto</b><br><span style="color:var(--mute);font-size:.88rem">o arrástrala aquí. Queda mejor con fondo transparente (PNG).</span></span></label><input id="eFile" type="file" accept="image/*" hidden></div>
+          <label class="check"><input type="checkbox" id="eDest"> Mostrar en «Selección de la semana»</label>
+          <label class="check"><input type="checkbox" id="eDisp" checked> Disponible</label>
+          <div class="full" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="submit">Guardar producto</button><button class="btn ghost" type="button" id="eCancel">Cancelar</button></div>
+        </form>
+        <div class="preview"><p class="eyebrow" style="margin-bottom:12px">Vista previa</p><div id="ePreview"></div></div>
+      </div>
+    </section>
+
+    <section data-pane="clientes" hidden>
+      <div class="ph"><div><h1>Clientes Élite</h1><p>Fotos de entregas que aparecen en la página Clientes.</p></div><label class="btn" for="cFile" style="cursor:pointer">+ Subir fotos</label><input id="cFile" type="file" accept="image/*" multiple hidden></div>
+      <div class="card"><div class="gal" id="cGal" style="margin-top:0"></div></div>
+    </section>
+
+    <section data-pane="ajustes" hidden>
+      <div class="ph"><div><h1>Ajustes</h1><p>Contacto, textos y secciones visibles.</p></div></div>
+      <form id="sForm">
+        <div class="card"><h3>Contacto</h3><p>Número al que llegan los pedidos y los botones de WhatsApp.</p><div class="form">
+          <div class="field"><label for="sWa">WhatsApp (con indicativo 57, solo números)</label><input id="sWa" inputmode="numeric"></div>
+          <div class="field"><label for="sPin">PIN del panel</label><input id="sPin" inputmode="numeric" maxlength="12"></div></div></div>
+        <div class="card"><h3>Portada</h3><p>Texto debajo del título principal del inicio. Déjalo vacío para usar el texto original.</p><div class="field"><textarea id="sSub" rows="3" aria-label="Texto de la portada"></textarea></div></div>
+        <div class="card"><h3>Secciones</h3><div class="form"><label class="check"><input type="checkbox" id="sPerf"> Mostrar perfumes en el inicio</label><label class="check"><input type="checkbox" id="sDest"> Mostrar selección de la semana</label></div></div>
+        <button class="btn" type="submit">Guardar ajustes</button>
+      </form>
+    </section>
+
+    <section data-pane="datos" hidden>
+      <div class="ph"><div><h1>Copia de seguridad</h1><p>Guarda este texto en un lugar seguro. Para restaurar, pégalo y toca «Restaurar».</p></div></div>
+      <div class="card"><div class="field"><label for="dJson">Datos de la tienda</label><textarea id="dJson" rows="12" style="font-family:var(--f-mono);font-size:.78rem"></textarea></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center"><button class="btn ghost sm" id="dCopy">Copiar</button><button class="btn ghost sm" id="dLoad">Restaurar desde el texto</button><span id="dReset"><button class="mini danger" id="dResetBtn">Volver al catálogo original</button></span></div>
+      <p class="note">Los cambios del panel se guardan en este navegador. Para que todos los visitantes los vean al publicar el sitio, se conecta a una base de datos.</p></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const KEY = 'elitetime-v1';
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => n ? '$' + Number(n).toLocaleString('es-CO') : '—';
+const DS = {wa: '573105300899', pin: '2026', sub: '', show: {perfumes: true, pedir: true, garantia: true, destacados: true}};
+const DC = [{src:'img/clientes/cliente-1.webp',txt:'Entrega personal · Barranquilla'},{src:'video/entrega.mp4',tipo:'video',txt:'Su Élite Time, recién entregado'},{src:'img/clientes/cliente-2.webp',txt:'Invicta en caja de impacto'},{src:'img/clientes/cliente-3.webp',txt:'Entrega doble para clientes Élite'}];
+let base = [], S, editing = null, pending = null;
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); return true } catch (e) { toast('No hay espacio en el navegador. Usa fotos más livianas.'); return false } };
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 2600) }
+const brands = () => [...new Set(['Invicta', 'Technomarine', 'Curren', 'Poedagar', ...S.productos.map(p => p.marca)])];
+
+function tab(n) {
+  $$('[role=tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === n)); $$('[data-pane]').forEach(p => p.hidden = p.dataset.pane !== n);
+  if (n === 'datos') $('#dJson').value = JSON.stringify(S, null, 1);
+  if (n === 'ajustes') { $('#sWa').value = S.settings.wa; $('#sPin').value = S.settings.pin; $('#sSub').value = S.settings.sub; $('#sPerf').checked = S.settings.show.perfumes; $('#sDest').checked = S.settings.show.destacados }
+  if (n === 'clientes') gal();
+  scrollTo(0, 0);
+}
+function render() {
+  const P = S.productos, pr = P.filter(p => p.precio).map(p => p.precio), av = P.filter(p => p.disponible !== false).length;
+  $('#kpis').innerHTML = [['Productos', P.length, 1], ['Disponibles', av, av / (P.length || 1)], ['Destacados', P.filter(p => p.destacado).length, P.filter(p => p.destacado).length / 12], ['Precio promedio', pr.length ? fmt(Math.round(pr.reduce((a, b) => a + b, 0) / pr.length / 1000) * 1000) : '—', null]]
+    .map(([k, v, r]) => `<div class="kpi"><span>${k}</span><b>${v}</b>${r != null ? `<div class="bar"><i style="width:${Math.min(100, r * 100)}%"></i></div>` : ''}</div>`).join('');
+  const sb = $('#pBrand'), cur = sb.value; sb.innerHTML = '<option value="">Todas las marcas</option>' + brands().map(b => `<option>${esc(b)}</option>`).join(''); sb.value = cur;
+  $('#marcas').innerHTML = brands().map(b => `<option value="${esc(b)}">`).join('');
+  rows();
+}
+function rows() {
+  const q = $('#pq').value.trim().toLowerCase(), b = $('#pBrand').value, st = $('#pState').value;
+  const L = S.productos.filter(p => (!b || p.marca === b) && (!q || (p.marca + ' ' + p.modelo).toLowerCase().includes(q)) && (!st || (st === 'sin' && !p.precio) || (st === 'dest' && p.destacado) || (st === 'ago' && p.disponible === false)));
+  $('#rows').innerHTML = L.map(p => `<tr data-id="${esc(p.id)}"><td><img src="${esc(p.imagen)}" alt="" loading="lazy"></td>
+    <td><b style="font-weight:500">${esc(p.modelo)}</b> ${!p.precio ? '<span class="pill warn">sin precio</span>' : ''}</td><td>${esc(p.marca)}</td><td>${esc(p.genero)}</td><td class="num">${fmt(p.precio)}</td>
+    <td><button class="pill ${p.disponible === false ? 'no' : 'ok'}" data-act="disp">${p.disponible === false ? 'Agotado' : 'Disponible'}</button></td>
+    <td><button class="star" data-act="dest" aria-pressed="${!!p.destacado}" aria-label="Destacado">★</button></td>
+    <td style="white-space:nowrap"><a class="mini" href="reloj.html#${esc(p.id)}" target="_blank" style="text-decoration:none">Ver</a> <button class="mini" data-act="edit">Editar</button> <span><button class="mini danger" data-act="del">Eliminar</button></span></td></tr>`).join('') || '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--mute)">No hay productos con ese filtro.</td></tr>';
+}
+function preview() {
+  const p = {marca: $('#eMarca').value || 'Marca', modelo: $('#eModelo').value || 'Modelo', precio: +$('#ePrecio').value, genero: $('#eGenero').value, imagen: $('#ePrev').src};
+  $('#ePreview').innerHTML = `<div class="pcard" style="pointer-events:none"><div class="cush"><img src="${esc(p.imagen)}" alt=""></div><div class="info"><span class="brand">${esc(p.marca)} · ${esc(p.genero)}</span><h3>${esc(p.modelo)}</h3><div class="row"><span class="price">${p.precio ? fmt(p.precio) : 'Consultar'}</span></div></div></div>`;
+}
+function edit(p) {
+  editing = p ? p.id : null; pending = null;
+  $('#eTitle').textContent = p ? 'Editar producto' : 'Nuevo producto'; $('#tabEdit span').textContent = p ? 'Editando' : 'Nuevo producto';
+  $('#eMarca').value = p?.marca || ''; $('#eModelo').value = p?.modelo || ''; $('#ePrecio').value = p?.precio || ''; $('#eGenero').value = p?.genero || 'Hombre';
+  $('#eSpecs').value = (p?.specs?.length ? p.specs : ['Movimiento de cuarzo', 'Acero inoxidable', 'Resistente al agua']).join('\n');
+  $('#ePrev').src = p?.imagen || 'img/marca/logo.webp'; $('#eDest').checked = !!p?.destacado; $('#eDisp').checked = p ? p.disponible !== false : true;
+  tab('editar'); preview(); setTimeout(() => $(p ? '#ePrecio' : '#eMarca').focus(), 60);
+}
+const readImg = (file, max = 700) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => { const im = new Image(); im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); let d = c.toDataURL('image/webp', .82); if (!d.startsWith('data:image/webp')) d = c.toDataURL('image/png'); res(d) }; im.onerror = rej; im.src = r.result }; r.onerror = rej; r.readAsDataURL(file) });
+function gal() { $('#cGal').innerHTML = S.clientes.map((c, i) => `<figure>${c.tipo === 'video' ? `<video src="${esc(c.src)}" muted preload="metadata"></video>` : `<img src="${esc(c.src)}" alt="">`}<button class="mini danger" data-ci="${i}">Quitar</button></figure>`).join('') || '<p style="color:var(--mute);margin:0">Aún no hay fotos.</p>' }
+function confirmIn(holder, label, yes) { const o = holder.innerHTML; holder.innerHTML = `<span class="confirm">${label} <button class="mini danger" data-y>Sí</button><button class="mini" data-n>No</button></span>`; holder.querySelector('[data-y]').onclick = e => { e.stopPropagation(); yes() }; holder.querySelector('[data-n]').onclick = e => { e.stopPropagation(); holder.innerHTML = o } }
+
+async function boot() {
+  try { base = await (await fetch('data/productos.json')).json() } catch (e) {}
+  let sv = null; try { sv = JSON.parse(localStorage.getItem(KEY) || 'null') } catch (e) {}
+  S = sv && Array.isArray(sv.productos) ? {productos: sv.productos, clientes: sv.clientes || structuredClone(DC), settings: {...structuredClone(DS), ...sv.settings, show: {...DS.show, ...(sv.settings || {}).show}}} : {productos: structuredClone(base), clientes: structuredClone(DC), settings: structuredClone(DS)};
+  let ok = false; try { ok = sessionStorage.getItem(KEY + '-u') === '1' } catch (e) {}
+  const open = () => { $('#gate').hidden = true; $('#app').hidden = false; render() };
+  if (ok) open(); else setTimeout(() => $('#pin').focus(), 50);
+  const tryPin = () => { if ($('#pin').value === S.settings.pin) { try { sessionStorage.setItem(KEY + '-u', '1') } catch (e) {} open() } else { $('#pinErr').textContent = 'PIN incorrecto. Revisa e intenta de nuevo.'; $('#pin').select() } };
+  $('#pinBtn').onclick = tryPin; $('#pin').onkeydown = e => e.key === 'Enter' && tryPin();
+  $('#logout').onclick = () => { try { sessionStorage.removeItem(KEY + '-u') } catch (e) {} location.reload() };
+  $$('[role=tab]').forEach(b => b.onclick = () => b.dataset.tab === 'editar' && !editing ? edit(null) : tab(b.dataset.tab));
+  $('#pq').oninput = rows; $('#pBrand').onchange = rows; $('#pState').onchange = rows; $('#addBtn').onclick = () => edit(null);
+  $('#rows').onclick = e => { const b = e.target.closest('[data-act]'); if (!b) return; const p = S.productos.find(x => x.id === b.closest('tr').dataset.id), a = b.dataset.act;
+    if (a === 'edit') edit(p);
+    if (a === 'dest') { p.destacado = !p.destacado; save(); render(); toast(p.destacado ? 'Ahora es destacado' : 'Quitado de destacados') }
+    if (a === 'disp') { p.disponible = p.disponible === false; save(); render(); toast(p.disponible ? 'Marcado disponible' : 'Marcado agotado') }
+    if (a === 'del') confirmIn(b.parentElement, '¿Eliminar?', () => { S.productos = S.productos.filter(x => x !== p); save(); render(); toast('Producto eliminado') }) };
+  ['#eMarca', '#eModelo', '#ePrecio', '#eGenero'].forEach(s => $(s).addEventListener('input', preview));
+  $('#eCancel').onclick = () => { editing = null; $('#tabEdit span').textContent = 'Nuevo producto'; tab('productos') };
+  const pick = async f => { if (!f) return; try { pending = await readImg(f); $('#ePrev').src = pending; preview() } catch (e) { toast('No se pudo leer esa imagen. Prueba con JPG o PNG.') } };
+  $('#eFile').onchange = e => pick(e.target.files[0]);
+  const d = $('#eDrop'); d.ondragover = e => { e.preventDefault(); d.classList.add('over') }; d.ondragleave = () => d.classList.remove('over'); d.ondrop = e => { e.preventDefault(); d.classList.remove('over'); pick(e.dataTransfer.files[0]) };
+  $('#eForm').onsubmit = e => { e.preventDefault();
+    const data = {marca: $('#eMarca').value.trim(), modelo: $('#eModelo').value.trim(), precio: parseInt($('#ePrecio').value) || null, genero: $('#eGenero').value, specs: $('#eSpecs').value.split('\n').map(s => s.trim()).filter(Boolean), destacado: $('#eDest').checked, disponible: $('#eDisp').checked};
+    if (editing) { const p = S.productos.find(x => x.id === editing); Object.assign(p, data); if (pending) p.imagen = pending }
+    else { if (!pending) { toast('Agrega una foto del reloj antes de guardar.'); return } S.productos.unshift({id: 'r' + Date.now().toString(36), imagen: pending, ...data}) }
+    if (save()) { toast(editing ? 'Cambios guardados' : 'Producto agregado'); editing = null; $('#tabEdit span').textContent = 'Nuevo producto'; render(); tab('productos') } };
+  $('#cFile').onchange = async e => { for (const f of e.target.files) { try { S.clientes.push({src: await readImg(f, 1000), txt: ''}) } catch (_) {} } if (save()) toast('Fotos agregadas'); gal(); e.target.value = '' };
+  $('#cGal').onclick = e => { const b = e.target.closest('[data-ci]'); if (!b) return; S.clientes.splice(+b.dataset.ci, 1); save(); gal(); toast('Foto quitada') };
+  $('#sForm').onsubmit = e => { e.preventDefault(); const wa = $('#sWa').value.replace(/\D/g, ''); if (wa.length < 10) return toast('El WhatsApp debe incluir el 57 y el número completo.'); const pin = $('#sPin').value.trim(); if (pin.length < 4) return toast('El PIN debe tener al menos 4 dígitos.');
+    Object.assign(S.settings, {wa, pin, sub: $('#sSub').value.trim(), show: {...S.settings.show, perfumes: $('#sPerf').checked, destacados: $('#sDest').checked}}); if (save()) toast('Ajustes guardados') };
+  $('#dCopy').onclick = async () => { const t = $('#dJson'); try { await navigator.clipboard.writeText(t.value); toast('Copiado') } catch (e) { t.select(); toast('Texto seleccionado: cópialo con Ctrl+C') } };
+  $('#dLoad').onclick = () => { try { const s = JSON.parse($('#dJson').value); if (!Array.isArray(s.productos)) throw 0; S = {productos: s.productos, clientes: s.clientes || [], settings: {...structuredClone(DS), ...s.settings}}; save(); render(); toast('Datos restaurados') } catch (e) { toast('Ese texto no es una copia válida de la tienda.') } };
+  $('#dReset').onclick = e => { if (!e.target.closest('#dResetBtn')) return; confirmIn($('#dReset'), '¿Borrar tus cambios?', () => { S = {productos: structuredClone(base), clientes: structuredClone(DC), settings: structuredClone(DS)}; try { localStorage.removeItem(KEY) } catch (e) {} $('#dReset').innerHTML = '<button class="mini danger" id="dResetBtn">Volver al catálogo original</button>'; $('#dJson').value = JSON.stringify(S, null, 1); render(); toast('Catálogo original restaurado') }) };
+}
+boot();
+})();
+</script>
+</body>
+</html>
