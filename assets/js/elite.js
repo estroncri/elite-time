@@ -1,7 +1,7 @@
 /* Élite Time — núcleo compartido: datos, carrito, cabecera/pie, intro, transiciones y animaciones. */
 (() => {
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const KEY = 'elitetime-v1', CART = 'elitetime-cart';
+const CART = 'elitetime-cart';
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(pointer: fine)').matches;
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -42,17 +42,25 @@ const E = window.Elite = { $, $$, esc, fmt, ICON, BRANDS, reduce, fine, store, d
 let readyFns = [], isReady = false;
 E.ready = fn => isReady ? fn(E.data) : readyFns.push(fn);
 
+/* El catálogo vive en la base de datos de Cloudflare (lo edita el panel).
+   Si la API no responde en 4 s, la tienda usa la copia de data/productos.json. */
+const API = 'https://elite-time-panel.pages.dev/api/catalog';
 async function loadData() {
-  let base = [];
-  try { base = await (await fetch('data/productos.json')).json() } catch (e) { }
-  const saved = store.get(KEY, null);
-  E.base = base;
-  E.data = saved && Array.isArray(saved.productos)
-    ? { productos: saved.productos, clientes: saved.clientes || structuredClone(DEFAULT_CLIENTES), settings: { ...structuredClone(DEFAULT_SETTINGS), ...saved.settings, show: { ...DEFAULT_SETTINGS.show, ...(saved.settings || {}).show } } }
-    : { productos: base, clientes: structuredClone(DEFAULT_CLIENTES), settings: structuredClone(DEFAULT_SETTINGS) };
+  let remote = null;
+  try {
+    const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 4000);
+    const r = await fetch(API, { signal: ctl.signal }); clearTimeout(t);
+    if (r.ok) remote = await r.json();
+  } catch (e) { }
+  if (remote && Array.isArray(remote.productos)) {
+    E.data = { productos: remote.productos, clientes: remote.clientes || structuredClone(DEFAULT_CLIENTES), settings: { ...structuredClone(DEFAULT_SETTINGS), ...remote.settings, show: { ...DEFAULT_SETTINGS.show, ...(remote.settings || {}).show } } };
+  } else {
+    let base = [];
+    try { base = await (await fetch('data/productos.json')).json() } catch (e) { }
+    E.data = { productos: base, clientes: structuredClone(DEFAULT_CLIENTES), settings: structuredClone(DEFAULT_SETTINGS) };
+  }
   E.DEFAULT_SETTINGS = DEFAULT_SETTINGS; E.DEFAULT_CLIENTES = DEFAULT_CLIENTES;
 }
-E.save = () => store.set(KEY, E.data);
 E.byId = id => E.data.productos.find(p => p.id === id);
 E.brands = () => { const s = new Set(Object.keys(BRANDS)); E.data.productos.forEach(p => s.add(p.marca)); return [...s] };
 E.specs = p => p.specs && p.specs.length ? p.specs : ['Movimiento de cuarzo', 'Acero inoxidable', 'Resistente al agua'];
@@ -169,7 +177,7 @@ function chrome() {
       <div><h4>Pedidos</h4><p class="phone">${E.phone()}</p><ul style="margin-top:12px"><li><a href="https://www.instagram.com/elitetimebq/" target="_blank" rel="noopener">Instagram · @elitetimebq</a></li><li><a href="https://www.tiktok.com/@elitetimebq" target="_blank" rel="noopener">TikTok · @elitetimebq</a></li><li><a href="https://www.facebook.com/share/1DhSsEF17G/" target="_blank" rel="noopener">Facebook · Elite Time bq</a></li></ul></div>
     </div>
     <div class="foot-word" aria-hidden="true" data-parallax="-.08">ÉLITE TIME</div>
-    <div class="wrap legal"><span>© ${new Date().getFullYear()} Élite Time · Barranquilla, Colombia</span><span><a href="panel.html">Panel de administración</a></span></div>
+    <div class="wrap legal"><span>© ${new Date().getFullYear()} Élite Time · Barranquilla, Colombia</span><span>Relojería original</span></div>
   </footer>`);
 }
 

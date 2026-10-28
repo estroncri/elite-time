@@ -13,7 +13,6 @@ Sitio web de Élite Time, tienda de relojes originales en Barranquilla (Invicta,
 | `clientes.html` | Video y fotos de entregas reales |
 | `perfumes.html` | Perfumería original (próximamente) |
 | `comprar.html` | Cómo comprar, garantía y preguntas frecuentes |
-| `panel.html` | Panel de administración |
 
 ## Datos
 
@@ -21,6 +20,6 @@ Sitio web de Élite Time, tienda de relojes originales en Barranquilla (Invicta,
 - Estilos y lógica compartida: `assets/css/elite.css` y `assets/js/elite.js`
 - Pedidos: botón de WhatsApp y carrito que arma el mensaje al **310 530 0899**
 
-El panel guarda los cambios en el navegador donde se hacen. Para que todos los visitantes vean los cambios hay que conectarlo a una base de datos.
+El catálogo vive en una base de datos de Cloudflare (D1) y se edita desde el panel, que está publicado aparte en Cloudflare Pages. La tienda lee los productos de la API del panel; si no responde, usa la copia de `data/productos.json`.
 
 Es un sitio estático: no necesita compilación. Se publica tal cual en GitHub Pages o en cualquier hosting.
