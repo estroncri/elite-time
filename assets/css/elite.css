@@ -216,7 +216,7 @@ section{position:relative}
 .toast.on{transform:translate(-50%,0);opacity:1}
 
 /* ---------- footer ---------- */
-.site-foot{border-top:1px solid var(--line);background:var(--ink-2);position:relative;overflow:hidden}
+.site-foot{border-top:1px solid var(--line);background:var(--ink);position:relative;overflow:hidden;margin-top:clamp(20px,4vw,60px)}
 .foot-cta{padding-block:clamp(70px,10vw,140px);text-align:center;display:grid;justify-items:center;gap:26px;border-bottom:1px solid var(--line)}
 .foot-cta h2{font-size:clamp(2.6rem,8vw,7rem)}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-block:56px}
@@ -267,11 +267,13 @@ section{position:relative}
 
 .bg-tex,.bg-rosette,.bg-waves,.bg-gold,.bg-dial{position:relative;isolation:isolate}
 .bg-rosette,.bg-dial{overflow-x:clip}
-.bg-tex::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,10,.92),rgba(10,10,10,.78) 50%,rgba(10,10,10,.94)),url(../../img/marca/textura.webp) center/cover;}
+/* los fondos de sección se funden arriba y abajo con el negro de la página: sin cortes secos */
+.bg-tex::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,10,.92),rgba(10,10,10,.78) 50%,rgba(10,10,10,.94)),url(../../img/marca/textura.webp) center/cover;mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent);-webkit-mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent)}
+.site-foot.bg-tex::before{mask-image:linear-gradient(transparent,#000 22%);-webkit-mask-image:linear-gradient(transparent,#000 22%)}
 .bg-rosette::before{content:"";position:absolute;z-index:-1;width:min(1100px,120vw);aspect-ratio:1;right:-28%;top:50%;translate:0 -50%;background:url(../../img/marca/guilloche.svg) center/contain no-repeat;opacity:.09;animation:spin 140s linear infinite}
 .bg-rosette.left::before{right:auto;left:-30%}
 .bg-waves::before{content:"";position:absolute;inset:0;z-index:-1;background:url(../../img/marca/ondas.svg) 0 0/90px 90px;opacity:.07;mask-image:radial-gradient(70% 80% at 50% 50%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(70% 80% at 50% 50%,#000 30%,transparent 75%)}
-.bg-gold{background:radial-gradient(80% 140% at 15% 0%,rgba(202,174,118,.16),transparent 55%),radial-gradient(70% 120% at 100% 100%,rgba(156,131,80,.14),transparent 55%),linear-gradient(160deg,#141414,#0b0b0b)}
+.bg-gold::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 18% 40%,rgba(202,174,118,.13),transparent 65%),radial-gradient(55% 70% at 88% 65%,rgba(156,131,80,.11),transparent 65%),linear-gradient(160deg,#141414,#0b0b0b);mask-image:linear-gradient(transparent,#000 20%,#000 80%,transparent);-webkit-mask-image:linear-gradient(transparent,#000 20%,#000 80%,transparent)}
 .bg-dial::after{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:min(900px,130vw);aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(202,174,118,.12) 0 .4deg,transparent .4deg 6deg);mask-image:radial-gradient(circle,transparent 58%,#000 59%,#000 63%,transparent 64%,transparent 72%,#000 73%,#000 74%,transparent 75%);-webkit-mask-image:radial-gradient(circle,transparent 58%,#000 59%,#000 63%,transparent 64%,transparent 72%,#000 73%,#000 74%,transparent 75%);animation:spin 200s linear infinite reverse;opacity:.8}
 @keyframes spin{to{rotate:360deg}}
 /* banda separadora con brillo dorado que recorre la línea */
