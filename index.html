@@ -9,8 +9,13 @@
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="img/marca/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"></noscript>
 <link rel="preconnect" href="https://elite-time-panel.pages.dev" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" href="img/marca/portada-600.webp" as="image" media="(max-width:900px)" fetchpriority="high">
+<link rel="preload" href="img/marca/portada.webp" as="image" media="(min-width:901px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/elite.css">
 <style>
 /* ---- Inicio ---- */
@@ -263,7 +268,7 @@
             <li><b>Caja de impacto</b><span>Opcional · Invicta y Technomarine</span></li>
           </ul>
           <div class="tvid" id="tvid" data-reveal>
-            <video id="tulaV" src="video/tula.mp4#t=0.5" preload="metadata" playsinline></video>
+            <video id="tulaV" data-src="video/tula.mp4#t=0.5" preload="none" playsinline></video>
             <button class="pl" id="tulaPlay" aria-label="Ver el video de la tula"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>VER LA TULA</b></button>
           </div>
         </div>
@@ -276,7 +281,7 @@
   <section class="sec bg-waves light">
     <div class="wrap cteaser">
       <div class="vid" id="vid" data-reveal>
-        <video id="tv" src="video/testimonio.mp4#t=0.6" preload="metadata" playsinline></video>
+        <video id="tv" data-src="video/testimonio.mp4#t=0.6" preload="none" playsinline></video>
         <button class="pl" id="tvPlay" aria-label="Reproducir el video del cliente"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>CLIENTE · 0:43</b></button>
       </div>
       <div>
@@ -322,8 +327,8 @@ Elite.ready(d => {
   $('#btiles').addEventListener('pointermove', e => { const t = e.target.closest('.btile'); if (!t) return; const r = t.getBoundingClientRect(); t.style.setProperty('--mx', e.clientX - r.left + 'px'); t.style.setProperty('--my', e.clientY - r.top + 'px') });
 
   /* video */
-  const tl = $('#tulaV'); $('#tulaPlay').onclick = () => { tl.controls = true; tl.currentTime = 0; tl.play().catch(() => {}); $('#tvid').classList.add('on') };
-  const tv = $('#tv'); $('#tvPlay').onclick = () => { tv.controls = true; tv.currentTime = 0; tv.play().catch(() => {}); $('#vid').classList.add('on') };
+  const tl = $('#tulaV'); $('#tulaPlay').onclick = () => { Elite.loadVideo(tl); tl.controls = true; tl.currentTime = 0; tl.play().catch(() => {}); $('#tvid').classList.add('on') };
+  const tv = $('#tv'); $('#tvPlay').onclick = () => { Elite.loadVideo(tv); tv.controls = true; tv.currentTime = 0; tv.play().catch(() => {}); $('#vid').classList.add('on') };
 
   /* manifiesto palabra por palabra */
   const m = $('#mani'); const walk = n => [...n.childNodes].forEach(c => { if (c.nodeType === 3) { const f = document.createDocumentFragment(); c.textContent.split(/(\s+)/).forEach(w => { if (!w.trim()) { f.append(w); return } const s = document.createElement('span'); s.className = 'mw' + (n.classList?.contains('g') ? ' g' : ''); s.textContent = w; f.append(s) }); c.replaceWith(f) } else if (c.nodeType === 1) walk(c) }); walk(m);
