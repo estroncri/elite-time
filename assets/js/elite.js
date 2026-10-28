@@ -26,7 +26,7 @@ const BRANDS = {
 };
 const PAGES = [
   ['index.html', 'Inicio'], ['coleccion.html', 'Colección'], ['marcas.html', 'Marcas'],
-  ['clientes.html', 'Clientes'], ['perfumes.html', 'Perfumes'], ['comprar.html', 'Cómo comprar']
+  ['clientes.html', 'Clientes'], ['perfumes.html', 'Perfumes'], ['comprar.html', 'Cómo comprar'], ['preguntas.html', 'Preguntas']
 ];
 const ICON = {
   bag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
@@ -67,6 +67,8 @@ E.specs = p => p.specs && p.specs.length ? p.specs : ['Movimiento de cuarzo', 'A
 E.wa = msg => `https://wa.me/${E.data.settings.wa}?text=${encodeURIComponent(msg)}`;
 E.phone = () => E.data.settings.wa.replace(/^57/, '').replace(/(\d{3})(\d{3})(\d+)/, '$1 $2 $3');
 E.url = p => `reloj.html#${p.id}`;
+/* número con el logo de WhatsApp, enlazado al chat */
+E.phoneHTML = (cls = '') => `<a class="wa-num ${cls}" href="${E.wa('Hola Élite Time, vi su página web y quiero información sobre sus relojes.')}" target="_blank" rel="noopener">${ICON.wa}<span>${E.phone()}</span></a>`;
 
 E.card = (p, i = 0) => `<a class="pcard${p.disponible === false ? ' sold' : ''}" href="${E.url(p)}" data-cursor="Ver" data-id="${esc(p.id)}">
   ${p.disponible === false ? '<span class="tag">Agotado</span>' : p.destacado ? '<span class="tag gold">Destacado</span>' : ''}
@@ -110,14 +112,14 @@ function renderCart() {
   }
   $('#cartFoot').hidden = false;
   box.innerHTML = cart.items.map((it, i) => { const p = E.byId(it.id); if (!p) return ''; return `<div class="citem">
-    <img src="${esc(p.imagen)}" alt=""><div><h4>${esc(p.marca)} ${esc(p.modelo)}</h4><small>${it.caja ? 'Caja ' + esc(it.caja) + ' · ' : ''}${fmt(p.precio)}</small>
+    <img src="${esc(p.imagen)}" alt=""><div><h4>${esc(p.marca)} ${esc(p.modelo)}</h4><small>${it.caja ? '+ Caja ' + esc(it.caja) + ' (adicional) · ' : 'Caja original · '}${fmt(p.precio)}</small>
     <div class="qty"><button data-q="-1" data-i="${i}" aria-label="Quitar uno">−</button><span>${it.qty}</span><button data-q="1" data-i="${i}" aria-label="Agregar uno">+</button></div></div>
     <button class="rm" data-rm="${i}">Quitar</button></div>` }).join('');
   $('#cartTotal').textContent = fmt(cart.total());
 }
 function checkout() {
   const name = $('#cName').value.trim(), city = $('#cCity').value.trim(), pay = $('#cPay').value;
-  const lines = cart.items.map(it => { const p = E.byId(it.id); return `• ${it.qty} × ${p.marca} ${p.modelo}${it.caja ? ' (caja ' + it.caja + ')' : ''} — ${fmt(p.precio * it.qty)}` });
+  const lines = cart.items.map(it => { const p = E.byId(it.id); return `• ${it.qty} × ${p.marca} ${p.modelo}${it.caja ? ' + caja ' + it.caja + ' (costo adicional por confirmar)' : ''} — ${fmt(p.precio * it.qty)}` });
   const msg = `Hola Élite Time, quiero hacer este pedido:\n\n${lines.join('\n')}\n\nTotal: ${fmt(cart.total())}\n${name ? 'Nombre: ' + name + '\n' : ''}${city ? 'Ciudad: ' + city + '\n' : ''}Pago: ${pay}\n\n¿Me confirman disponibilidad y envío?`;
   $('#cGo').href = E.wa(msg);
 }
@@ -132,7 +134,7 @@ E.toast = toast;
 function chrome() {
   const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const cur = h => here === h || (h === 'coleccion.html' && here === 'reloj.html') ? ' aria-current="page"' : '';
-  const ann = ['Relojería 100% original', 'Garantía de 1 año en maquinaria y batería', 'Envíos a toda Colombia', 'Pago contra entrega en Barranquilla y Soledad', 'Pedidos por WhatsApp · ' + E.phone()];
+  const ann = ['Relojería 100% original', 'Garantía de 1 año en maquinaria y batería', 'Envíos a toda Colombia', 'Pago contra entrega en Barranquilla y Soledad', `${ICON.wa} Pedidos por WhatsApp · ${E.phone()}`];
   document.body.insertAdjacentHTML('afterbegin', `
   <a href="#main" class="btn sm" style="position:fixed;left:-999px;top:8px;z-index:999" onfocus="this.style.left='8px'" onblur="this.style.left='-999px'">Saltar al contenido</a>
   <div class="announce" aria-label="Anuncios"><div class="track">${(ann.map(a => `<span>${a}</span>`).join('')).repeat(2)}</div></div>
@@ -147,7 +149,7 @@ function chrome() {
   <div class="mmenu" id="mmenu" role="dialog" aria-label="Menú">
     <div class="mm-top"><a class="logo" href="index.html"><img src="img/marca/logo.webp" alt="" width="40" height="40"><span><b>ÉLITE</b><small>TIME · BQ</small></span></a><button class="icon-btn" id="mmClose" aria-label="Cerrar menú">${ICON.close}</button></div>
     <nav>${PAGES.map(([h, t], i) => `<a href="${h}"${cur(h)}><small>0${i + 1}</small>${t}</a>`).join('')}</nav>
-    <div class="mm-foot"><span class="mono">${E.phone()}</span><span>Barranquilla · Envíos a toda Colombia</span></div>
+    <div class="mm-foot">${E.phoneHTML()}<span>Barranquilla · Envíos a toda Colombia</span></div>
   </div>
   <div class="scrim" id="scrim"></div>
   <aside class="drawer" id="drawer" aria-label="Carrito">
@@ -174,7 +176,7 @@ function chrome() {
       <div><a class="logo" href="index.html"><img src="img/marca/logo.webp" alt="" style="height:54px"><span><b>ÉLITE</b><small>TIME · BQ</small></span></a><p class="lead" style="margin-top:18px;font-size:.95rem">Relojes para quienes marcan la diferencia. Relojería y perfumería original desde Barranquilla para toda Colombia.</p></div>
       <div><h4>Tienda</h4><ul>${PAGES.slice(1).map(([h, t]) => `<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
       <div><h4>Marcas</h4><ul>${Object.keys(BRANDS).map(b => `<li><a href="coleccion.html#${BRANDS[b].slug}">${b}</a></li>`).join('')}</ul></div>
-      <div><h4>Pedidos</h4><p class="phone">${E.phone()}</p><ul style="margin-top:12px"><li><a href="https://www.instagram.com/elitetimebq/" target="_blank" rel="noopener">Instagram · @elitetimebq</a></li><li><a href="https://www.tiktok.com/@elitetimebq" target="_blank" rel="noopener">TikTok · @elitetimebq</a></li><li><a href="https://www.facebook.com/share/1DhSsEF17G/" target="_blank" rel="noopener">Facebook · Elite Time bq</a></li></ul></div>
+      <div><h4>Pedidos</h4><p class="phone">${E.phoneHTML()}</p><ul style="margin-top:12px"><li><a href="https://www.instagram.com/elitetimebq/" target="_blank" rel="noopener">Instagram · @elitetimebq</a></li><li><a href="https://www.tiktok.com/@elitetimebq" target="_blank" rel="noopener">TikTok · @elitetimebq</a></li><li><a href="https://www.facebook.com/share/1DhSsEF17G/" target="_blank" rel="noopener">Facebook · Elite Time bq</a></li></ul></div>
     </div>
     <div class="foot-word" aria-hidden="true" data-parallax="-.08">ÉLITE TIME</div>
     <div class="wrap legal"><span>© ${new Date().getFullYear()} Élite Time · Barranquilla, Colombia</span><span>Relojería original</span></div>
@@ -236,7 +238,7 @@ function transitions() {
     if (reduce || !sessionStorage.getItem('et-trans')) return;
     sessionStorage.removeItem('et-trans');
     bars.forEach(b => { b.style.transformOrigin = 'top'; b.style.transform = 'scaleY(1)' });
-    requestAnimationFrame(() => bars.forEach((b, i) => b.animate([{ transform: 'scaleY(1)' }, { transform: 'scaleY(0)' }], { duration: 700, delay: i * 60, easing: 'cubic-bezier(.77,0,.18,1)', fill: 'forwards' })));
+    requestAnimationFrame(() => bars.forEach((b, i) => b.animate([{ transform: 'scaleY(1)' }, { transform: 'scaleY(0)' }], { duration: 360, delay: i * 25, easing: 'cubic-bezier(.77,0,.18,1)', fill: 'forwards' })));
   };
   enter();
   addEventListener('pageshow', e => { if (e.persisted) bars.forEach(b => { b.getAnimations().forEach(a => a.cancel()); b.style.transform = 'scaleY(0)' }) });
@@ -247,9 +249,9 @@ function transitions() {
     if (file === here && hash !== undefined) return; // misma página, solo ancla
     if (reduce) return;
     e.preventDefault(); $('#mmenu').classList.remove('open');
-    bars.forEach((b, i) => { b.style.transformOrigin = 'bottom'; b.animate([{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 600, delay: i * 55, easing: 'cubic-bezier(.77,0,.18,1)', fill: 'forwards' }) });
+    bars.forEach((b, i) => { b.style.transformOrigin = 'bottom'; b.animate([{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 260, delay: i * 20, easing: 'cubic-bezier(.77,0,.18,1)', fill: 'forwards' }) });
     try { sessionStorage.setItem('et-trans', '1') } catch (_) { }
-    setTimeout(() => location.href = href, 600 + 4 * 55);
+    setTimeout(() => location.href = href, 260 + 4 * 20);
   });
 }
 

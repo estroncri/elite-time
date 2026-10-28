@@ -227,6 +227,10 @@ section{position:relative}
 .foot-grid a{color:var(--mute);text-decoration:none;transition:color .3s}
 .foot-grid a:hover{color:var(--bone)}
 .phone{font-family:var(--f-mono);font-size:1.25rem;color:var(--bone);user-select:all}
+.wa-num{display:inline-flex;align-items:center;gap:.55em;font-family:var(--f-mono);font-weight:600;color:var(--bone);text-decoration:none;white-space:nowrap}
+.wa-num svg{width:1.25em;height:1.25em;flex:none;color:#25d366}
+.wa-num:hover span{text-decoration:underline;text-underline-offset:4px}
+.announce svg{width:1.15em;height:1.15em;vertical-align:-.25em;margin-right:.35em}
 .foot-word{font-family:var(--f-display);font-size:clamp(4rem,19vw,17rem);line-height:.8;letter-spacing:.06em;text-align:center;color:transparent;-webkit-text-stroke:1px var(--line-2);user-select:none;padding-bottom:8px;white-space:nowrap}
 .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:22px calc(22px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);font-size:.8rem;color:var(--dim);padding-right:80px}
 .legal a{color:var(--mute)}
@@ -252,6 +256,25 @@ section{position:relative}
 .page-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 80% at 80% 0%,rgba(202,174,118,.12),transparent 60%)}
 .page-hero h1{margin-top:18px}
 .page-hero .lead{margin-top:20px}
+
+/* ---------- secciones blancas ----------
+   El sitio alterna bandas negras y blancas. Dentro de .light los mismos tokens
+   cambian a la versión clara, así tarjetas, botones y textos se adaptan solos. */
+.light{--ink:#f6f4ef;--ink-2:#ffffff;--ink-3:#f0ede7;--ink-4:#e7e3db;--line:#dcd6cb;--line-2:#b9b1a2;
+  --bone:#0d0d0d;--mute:#3a3732;--dim:#6a655c;--gold:#94743a;--gold-2:#b39658;--gold-3:#6f5527;
+  background:var(--ink);color:var(--bone);position:relative;isolation:isolate}
+.light .btn{--fg:#fff}
+.light .btn::before{background:#0d0d0d}
+.light .btn.ghost{--fg:#0d0d0d}
+.light .btn.ghost:hover{color:#fff}
+.light .tag{background:rgba(255,255,255,.88)}
+.light .pcard:hover{box-shadow:0 30px 60px -36px rgba(0,0,0,.35)}
+.light .pcard .cush img{filter:drop-shadow(0 18px 18px rgba(0,0,0,.28))}
+.light ::selection{background:#0d0d0d;color:#fff}
+/* logos dorados y amarillos sobre blanco: van en una placa negra para que se lean */
+.light .btile .lg{background:#0d0d0d;padding:10px 16px;border-radius:12px;width:fit-content;height:auto}
+.light .btile .lg img{max-height:40px}
+.light .btile .wd{color:#f7f4ee;font-size:clamp(.78rem,1.3vw,1.1rem)}
 
 /* ---------- fondos con profundidad ----------
    Capa ambiental fija (luces doradas que se mueven lento) + fondos por sección.

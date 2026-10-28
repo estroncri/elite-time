@@ -26,6 +26,8 @@
 @media (max-width:860px){.boxes{grid-template-columns:1fr}}
 .boxes figure{margin:0}
 .boxes img{width:100%;border-radius:var(--r-lg)}
+.boxes .impact{max-width:360px;justify-self:center}
+.faqcta{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .btypes{display:grid;gap:10px;margin-top:24px}
 .btypes div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:14px 0}
 .btypes span{color:var(--mute)}
@@ -55,24 +57,20 @@ details p{margin:0 0 22px;color:var(--mute);max-width:60ch}
     <div class="bgword" aria-hidden="true" data-parallax=".15">Comprar</div>
     <div class="wrap">
       <nav class="crumbs" aria-label="Ruta" data-reveal><a href="index.html">Inicio</a><span>Cómo comprar</span></nav>
-      <h1 class="h-xl" data-split>Pide tu reloj en <em class="gold">3 pasos.</em></h1>
+      <h1 class="h-xl" data-split>Pide tu reloj en <em class="gold">2 pasos.</em></h1>
       <p class="lead" data-reveal=".2">Sin registros ni formularios largos. Eliges, nos escribes y lo recibes con garantía de 1 año.</p>
     </div>
   </section>
 
-  <section class="sec" style="padding-top:20px">
+  <section class="sec light">
     <div class="wrap timeline" id="tl">
       <div class="rail"><i id="railFill"></i></div>
       <div class="tstep">
-        <div><span class="dot">1</span><span class="eyebrow">Elige</span><h3 data-split>Escoge tu reloj y escríbenos.</h3><p class="lead" data-reveal>Agrega relojes al carrito o toca «Comprar ahora» en cualquier reloj. WhatsApp se abre con el modelo, la caja y el precio ya escritos.</p></div>
-        <div class="card" data-reveal><div class="mock"><div class="b">Hola Élite Time, quiero comprar 1 × Invicta Pro Diver 0073 ($580.000) con caja Estándar. ¿Está disponible?</div><div class="a">¡Hola! Sí, lo tenemos disponible ⌚</div></div></div>
+        <div><span class="dot">1</span><span class="eyebrow">Elige</span><h3 data-split>Escoge tu reloj y escríbenos.</h3><p class="lead" data-reveal>Agrega relojes al carrito o toca «Comprar ahora» en cualquier reloj. WhatsApp se abre con el modelo y el precio ya escritos.</p></div>
+        <div class="card" data-reveal><div class="mock"><div class="b">Hola Élite Time, quiero comprar 1 × Invicta Pro Diver 0073 ($580.000). ¿Está disponible?</div><div class="a">¡Hola! Sí, lo tenemos disponible ⌚</div></div></div>
       </div>
       <div class="tstep">
-        <div><span class="dot">2</span><span class="eyebrow">Confirma</span><h3 data-split>Confirmamos y empacamos.</h3><p class="lead" data-reveal>Verificamos disponibilidad, tu dirección y la caja que prefieres. Cada reloj sale en su caja original.</p></div>
-        <figure class="card reveal-img" style="padding:0;margin:0"><img src="img/marca/caja-curren.webp" alt="Caja original Curren con tapa de seguridad y espuma protectora" loading="lazy" style="width:100%;padding:20px"></figure>
-      </div>
-      <div class="tstep">
-        <div><span class="dot">3</span><span class="eyebrow">Recibe</span><h3 data-split>Lo enviamos a tu destino.</h3><p class="lead" data-reveal>Entrega inmediata en Barranquilla y envío a cualquier ciudad de Colombia. Pagas contra entrega en Barranquilla y Soledad, o por transferencia.</p></div>
+        <div><span class="dot">2</span><span class="eyebrow">Recibe</span><h3 data-split>Lo recibes en su caja original.</h3><p class="lead" data-reveal>Enviamos cada reloj en su caja original, dentro de nuestra tula reutilizable. Entrega inmediata en Barranquilla y envío a cualquier ciudad de Colombia. Pagas contra entrega en Barranquilla y Soledad, o por transferencia.</p></div>
         <figure class="reveal-img" style="margin:0;aspect-ratio:4/3"><img src="img/clientes/cliente-1.webp" alt="Cliente recibiendo su reloj Élite Time" loading="lazy" style="width:100%;height:100%;object-fit:cover"></figure>
       </div>
     </div>
@@ -90,28 +88,22 @@ details p{margin:0 0 22px;color:var(--mute);max-width:60ch}
     </div>
   </section>
 
-  <section class="sec" style="padding-top:0">
+  <section class="sec light">
     <div class="wrap boxes">
-      <figure class="reveal-img"><img src="img/marca/cajas-invicta.webp" alt="Cajas Invicta: estándar, premium y de impacto" loading="lazy"></figure>
+      <figure class="reveal-img impact"><img src="img/marca/caja-impacto.webp" alt="Caja de impacto Invicta, amarilla y resistente" loading="lazy"></figure>
       <div>
         <span class="eyebrow">Presentación</span>
-        <h2 class="h-lg" data-split style="margin-top:16px">Tu Invicta en <em class="gold">3 cajas.</em></h2>
-        <p class="lead" data-reveal style="margin-top:18px">Elige la presentación al pedir. La caja de impacto tiene un costo adicional.</p>
-        <div class="btypes" data-stagger><div><b>Estándar</b><span>Caja original Invicta</span></div><div><b>Premium</b><span>Presentación premium</span></div><div><b>De impacto</b><span>Costo adicional · consultar</span></div></div>
+        <h2 class="h-lg" data-split style="margin-top:16px">Caja original <em class="gold">siempre incluida.</em></h2>
+        <p class="lead" data-reveal style="margin-top:18px">Todos nuestros relojes llegan en su caja original. Si buscas más protección, en Invicta y Technomarine puedes agregar la caja de impacto, que tiene un costo adicional.</p>
+        <div class="btypes" data-stagger><div><b>Caja original</b><span>Incluida en todos los relojes</span></div><div><b>Tula reutilizable</b><span>Incluida, pensada para darle un segundo uso</span></div><div><b>Caja de impacto</b><span>Opcional · Invicta y Technomarine · costo adicional</span></div></div>
       </div>
     </div>
   </section>
 
   <section class="sec bg-waves">
-    <div class="wrap faq">
-      <div><span class="eyebrow">Preguntas frecuentes</span><h2 class="h-lg" data-split style="margin-top:16px">Lo que más <em class="gold">nos preguntan.</em></h2><p class="lead" data-reveal style="margin-top:18px">¿Otra duda? Escríbenos al <span class="mono" style="color:var(--bone)" id="ph">310 530 0899</span>.</p></div>
-      <div data-reveal>
-        <details open><summary>¿Los relojes son originales?</summary><div class="ans"><p>Sí. Toda nuestra relojería es totalmente original, con garantía de 1 año por maquinaria y batería.</p></div></details>
-        <details><summary>¿Hacen envíos fuera de Barranquilla?</summary><div class="ans"><p>Sí, enviamos a todo el país. En Barranquilla la entrega es inmediata.</p></div></details>
-        <details><summary>¿Cómo puedo pagar?</summary><div class="ans"><p>Contra entrega en Barranquilla y Soledad, o por transferencia para el resto del país.</p></div></details>
-        <details><summary>¿El reloj llega en su caja?</summary><div class="ans"><p>Sí, cada reloj llega en su caja original. Los Invicta tienen tres presentaciones: estándar, premium y caja de impacto con costo adicional. Los Curren llegan con tapa de seguridad, espuma protectora y manual en español.</p></div></details>
-        <details><summary>No encuentro el modelo que busco</summary><div class="ans"><p>Escríbenos por WhatsApp con el modelo o una foto. Tenemos amplia variedad de referencias y te confirmamos disponibilidad.</p></div></details>
-      </div>
+    <div class="wrap faqcta">
+      <div><span class="eyebrow">¿Tienes dudas?</span><h2 class="h-lg" data-split style="margin-top:16px">Lo que más <em class="gold">nos preguntan.</em></h2></div>
+      <a class="btn" href="preguntas.html" data-magnetic>Ver preguntas frecuentes</a>
     </div>
   </section>
 </main>
@@ -123,17 +115,10 @@ details p{margin:0 0 22px;color:var(--mute);max-width:60ch}
 <script>
 Elite.ready(d => {
   const {$, $$, reduce} = Elite;
-  $('#ph').textContent = Elite.phone();
   if (window.gsap && window.ScrollTrigger && !reduce) {
     gsap.to('#railFill', { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#tl', start: 'top 70%', end: 'bottom 70%', scrub: true } });
     $$('.tstep .dot').forEach(dt => gsap.from(dt, { scale: 0, rotate: -90, duration: .9, ease: 'back.out(2)', scrollTrigger: { trigger: dt, start: 'top 80%' } }));
   } else $('#railFill').style.transform = 'none';
-  /* acordeón suave */
-  $$('details').forEach(dt => dt.querySelector('summary').addEventListener('click', e => {
-    if (reduce) return; e.preventDefault(); const a = dt.querySelector('.ans');
-    if (dt.open) { a.animate([{ height: a.offsetHeight + 'px' }, { height: 0 }], { duration: 450, easing: 'cubic-bezier(.2,.7,.1,1)' }).onfinish = () => dt.open = false }
-    else { dt.open = true; const h = a.offsetHeight; a.animate([{ height: 0, opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 550, easing: 'cubic-bezier(.2,.7,.1,1)' }) }
-  }));
 });
 </script>
 </body>
