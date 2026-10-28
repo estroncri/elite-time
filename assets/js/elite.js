@@ -22,7 +22,7 @@ const DEFAULT_CLIENTES = [
 const BRANDS = {
   Invicta: { slug: 'invicta', logo: 'img/marca/invicta.webp', since: 'Desde 1837', line: 'Pro Diver, Speedway, Racing, Aviator y Angel. Diseño deportivo con presencia de sobra.', lines: ['Pro Diver', 'Speedway', 'Racing', 'Specialty', 'Aviator', 'Angel', 'Wildflower'] },
   Technomarine: { slug: 'technomarine', word: 'TECHNOMARINE', since: 'Ginebra · Miami', line: 'Cruise, Coral y Ocean. Color, carácter y bisel que se nota a distancia.', lines: ['Cruise', 'Coral', 'Ocean Quantum', 'Ocean Nomad'] },
-  Curren: { slug: 'curren', logo: 'img/marca/curren.webp', since: 'Cronógrafos', line: 'Cronógrafos modernos que llegan en su caja original con manual en español.', lines: ['Pídelo por WhatsApp'] },
+  Curren: { slug: 'curren', logo: 'img/marca/curren-blanco.webp', since: 'Cronógrafos', line: 'Cronógrafos modernos que llegan en su caja original con manual en español.', lines: ['Pídelo por WhatsApp'] },
   Poedagar: { slug: 'poedagar', logo: 'img/marca/poedagar.webp', since: 'Acero clásico', line: 'Elegancia clásica de acero con fechador, a un precio de entrada.', lines: ['Fondo azul', 'Fondo verde', 'Fondo blanco'] }
 };
 const PAGES = [
