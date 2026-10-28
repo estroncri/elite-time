@@ -269,8 +269,7 @@ function intro() {
        página del sitio (con la cortina) no se repite. En las demás páginas, solo la primera vez. */
     let seen = false, viaSite = false; try { seen = sessionStorage.getItem('et-intro'); viaSite = sessionStorage.getItem('et-trans') } catch (e) { }
     const home = !!$('#dial');
-    /* si la página ya tardó en llegar (red lenta) no se suma más espera: se salta la intro */
-    if (reduce || !window.gsap || document.body.dataset.intro === 'off' || (home ? viaSite : seen) || performance.now() > 2500) return res();
+    if (reduce || !window.gsap || document.body.dataset.intro === 'off' || (home ? viaSite : seen)) return res();
     try { sessionStorage.setItem('et-intro', '1') } catch (e) { }
     const el = document.createElement('div'); el.className = 'intro';
     const ticks = Array.from({ length: 60 }, (_, i) => `<line class="tk" x1="100" y1="${i % 5 ? 8 : 4}" x2="100" y2="${i % 5 ? 13 : 16}" stroke="${i % 5 ? '#6f685d' : '#caae76'}" stroke-width="${i % 5 ? 1 : 2}" transform="rotate(${i * 6} 100 100)"/>`).join('');
@@ -302,9 +301,6 @@ function intro() {
       .to($('.half.b', el), { yPercent: 100, duration: 1.1, ease: 'expo.inOut' }, 2.65)
       .to($('.seam', el), { opacity: 0, duration: .4 }, 2.75)
       .add(() => { el.remove(); document.documentElement.style.overflow = '' });
-    tl.timeScale(1.7); /* la misma intro, más ágil: unos 2 s en total */
-    /* tope de seguridad: en un celular muy lento la intro nunca retiene la página más de 3 s */
-    setTimeout(() => { if (el.isConnected) { tl.kill(); res(); el.remove(); document.documentElement.style.overflow = '' } }, 3000);
   });
 }
 
@@ -365,14 +361,6 @@ E.animate = (root = document) => {
   $$('[data-line]', root).forEach(el => g.fromTo(el, { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left', duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: el, start: 'top 92%' } }));
   ST.refresh();
 };
-/* videos diferidos: se descargan solo cuando el visitante se acerca a ellos (o toca reproducir) */
-E.loadVideo = v => { if (v && v.dataset.src && !v.getAttribute('src')) { v.preload = 'metadata'; v.src = v.dataset.src } };
-function lazyVideos() {
-  const vs = $$('video[data-src]'); if (!vs.length) return;
-  if (!('IntersectionObserver' in window)) return vs.forEach(E.loadVideo);
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { E.loadVideo(e.target); io.unobserve(e.target) } }), { rootMargin: '600px 0px' });
-  vs.forEach(v => io.observe(v));
-}
 /* tarjetas que llegan después (filtros) */
 E.animateCards = list => {
   if (reduce) return;
@@ -391,11 +379,9 @@ function smooth() {
 /* ================= arranque ================= */
 async function boot() {
   if (window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-  /* en equipos lentos las animaciones siguen el reloj real (saltan cuadros) en vez de ir en cámara lenta */
-  if (window.gsap) gsap.ticker.lagSmoothing(0);
   const introP = E.introDone = intro();
   await loadData();
-  lazyVideos(); chrome(); wireWa(); bindGlobal(); renderCart(); pointerFx(); transitions(); smooth();
+  chrome(); wireWa(); bindGlobal(); renderCart(); pointerFx(); transitions(); smooth();
   isReady = true; readyFns.forEach(fn => fn(E.data)); readyFns = [];
   wireWa();
   await introP;
