@@ -145,7 +145,7 @@ function chrome() {
   <a href="#main" class="btn sm" style="position:fixed;left:-999px;top:8px;z-index:999" onfocus="this.style.left='8px'" onblur="this.style.left='-999px'">Saltar al contenido</a>
   <div class="announce" aria-label="Anuncios"><div class="track">${(ann.map(a => `<span>${a}</span>`).join('')).repeat(2)}</div></div>
   <header class="site-head" id="head"><div class="wrap head-in">
-    <a class="logo" href="index.html" aria-label="Élite Time, inicio"><img src="img/marca/logo.webp" alt="" width="40" height="40"><span><b>ÉLITE</b><small>TIME · BQ</small></span></a>
+    <a class="logo" href="index.html" aria-label="Élite Time, inicio"><img src="img/marca/logo-h.webp" alt="Élite Time" width="104" height="45"></a>
     <ul class="nav">${PAGES.slice(1).map(([h, t]) => `<li><a href="${h}"${cur(h)}>${t}</a></li>`).join('')}</ul>
     <div class="head-actions">
       <a class="btn sm" data-wa href="#" target="_blank" rel="noopener">${ICON.wa}Pedir</a>
@@ -153,7 +153,7 @@ function chrome() {
       <button class="icon-btn burger" id="burger" aria-label="Abrir menú" aria-expanded="false">${ICON.menu}</button>
     </div></div></header>
   <div class="mmenu" id="mmenu" role="dialog" aria-label="Menú">
-    <div class="mm-top"><a class="logo" href="index.html"><img src="img/marca/logo.webp" alt="" width="40" height="40"><span><b>ÉLITE</b><small>TIME · BQ</small></span></a><button class="icon-btn" id="mmClose" aria-label="Cerrar menú">${ICON.close}</button></div>
+    <div class="mm-top"><a class="logo" href="index.html"><img src="img/marca/logo-h.webp" alt="Élite Time" width="104" height="45"></a><button class="icon-btn" id="mmClose" aria-label="Cerrar menú">${ICON.close}</button></div>
     <nav>${PAGES.map(([h, t], i) => `<a href="${h}"${cur(h)}><small>0${i + 1}</small>${t}</a>`).join('')}</nav>
     <div class="mm-foot">${E.phoneHTML()}<span>Barranquilla · Envíos a toda Colombia</span></div>
   </div>
@@ -177,7 +177,7 @@ function chrome() {
   document.body.insertAdjacentHTML('beforeend', `<footer class="site-foot bg-tex">
     <div class="wrap foot-cta"><span class="eyebrow">Tu próximo reloj</span><h2 data-split>El tiempo define <em class="gold">tu estilo.</em></h2><a class="btn" data-wa href="#" target="_blank" rel="noopener" data-magnetic>${ICON.wa}Hablemos por WhatsApp</a></div>
     <div class="wrap foot-grid">
-      <div><a class="logo" href="index.html"><img src="img/marca/logo.webp" alt="" style="height:54px"><span><b>ÉLITE</b><small>TIME · BQ</small></span></a><p class="lead" style="margin-top:18px;font-size:.95rem">Relojes para quienes marcan la diferencia. Relojería y perfumería original desde Barranquilla para toda Colombia.</p></div>
+      <div><a class="logo" href="index.html"><img src="img/marca/logo-h.webp" alt="Élite Time" style="height:70px"></a><p class="lead" style="margin-top:18px;font-size:.95rem">Relojes para quienes marcan la diferencia. Relojería y perfumería original desde Barranquilla para toda Colombia.</p></div>
       <div><h4>Tienda</h4><ul>${PAGES.slice(1).map(([h, t]) => `<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
       <div><h4>Marcas</h4><ul>${Object.keys(BRANDS).map(b => `<li><a href="coleccion.html#${BRANDS[b].slug}">${b}</a></li>`).join('')}</ul></div>
       <div><h4>Pedidos</h4><p class="phone">${E.phoneHTML()}</p><ul style="margin-top:12px"><li><a href="https://www.instagram.com/elitetimebq/" target="_blank" rel="noopener">Instagram · @elitetimebq</a></li><li><a href="https://www.tiktok.com/@elitetimebaq" target="_blank" rel="noopener">TikTok · @elitetimebaq</a></li><li><a href="https://www.facebook.com/share/1DhSsEF17G/" target="_blank" rel="noopener">Facebook · Elite Time bq</a></li></ul></div>
