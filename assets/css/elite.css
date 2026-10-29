@@ -128,22 +128,8 @@ section{position:relative}
 .progress{position:fixed;left:0;right:0;top:0;height:2px;z-index:95;background:var(--gold);transform:scaleX(0);transform-origin:left;pointer-events:none}
 
 /* ---------- transición entre páginas ---------- */
-.curtain{position:fixed;inset:0;z-index:250;pointer-events:none;display:grid;grid-template-columns:repeat(5,1fr)}
-.curtain i{background:var(--ink-2);transform:scaleY(0);transform-origin:bottom;border-right:1px solid var(--line)}
-.curtain i:nth-child(odd){background:var(--ink-3)}
-.curtain .mark{position:absolute;inset:0;display:grid;place-items:center;opacity:0}
-.curtain .mark img{width:80px}
 
 /* ---------- cursor personalizado (solo puntero fino) ---------- */
-.cur,.cur-dot{position:fixed;left:0;top:0;pointer-events:none;z-index:400;border-radius:50%;transform:translate(-50%,-50%);mix-blend-mode:difference}
-.cur{width:38px;height:38px;border:1px solid var(--bone);transition:width .35s var(--ease),height .35s var(--ease),background .35s,border-color .35s}
-.cur-dot{width:5px;height:5px;background:var(--bone)}
-.cur.hover{width:70px;height:70px;background:var(--bone);border-color:transparent}
-.cur.view{width:96px;height:96px;background:var(--gold);border-color:transparent;mix-blend-mode:normal}
-.cur .lbl{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.16em;color:#0a0a0a;opacity:0;transition:opacity .2s}
-.cur.view .lbl{opacity:1}
-@media (pointer:coarse),(prefers-reduced-motion:reduce){.cur,.cur-dot{display:none}}
-
 /* ---------- utilidades de animación ---------- */
 .split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
 .split .w > span{display:inline-block;will-change:transform}

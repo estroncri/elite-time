@@ -171,8 +171,6 @@ function chrome() {
   </aside>
   <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="progress" id="progress" aria-hidden="true"></div>
-  <div class="curtain" id="curtain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><div class="mark"><img src="img/marca/logo.webp" alt=""></div></div>
-  <div class="cur" id="cur"><span class="lbl" id="curLbl">Ver</span></div><div class="cur-dot" id="curDot"></div>
   <a class="wa-fab" data-wa href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">${ICON.wa}</a>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>`);
   const main = $('main'); if (main && !main.id) main.id = 'main';
@@ -221,17 +219,9 @@ function bindGlobal() {
   }, true);
 }
 
-/* cursor + magnetismo + inclinación de tarjetas */
+/* magnetismo + inclinación de tarjetas (el puntero queda normal) */
 function pointerFx() {
   if (!fine || reduce) return;
-  const c = $('#cur'), d = $('#curDot'), lbl = $('#curLbl');
-  let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
-  addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; d.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%)` }, { passive: true });
-  (function loop() { cx += (x - cx) * .18; cy += (y - cy) * .18; c.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`; requestAnimationFrame(loop) })();
-  document.addEventListener('pointerover', e => {
-    const v = e.target.closest('[data-cursor]'), h = e.target.closest('a,button,[role=button],input,select,label');
-    c.classList.toggle('view', !!v); c.classList.toggle('hover', !v && !!h); if (v) lbl.textContent = v.dataset.cursor;
-  });
   document.addEventListener('pointermove', e => {
     const m = e.target.closest('[data-magnetic]');
     $$('[data-magnetic]').forEach(el => { if (el !== m) el.style.transform = '' });
@@ -242,27 +232,15 @@ function pointerFx() {
   document.addEventListener('pointerout', e => { const card = e.target.closest('.pcard'); if (card && !card.contains(e.relatedTarget)) { card.style.transition = 'transform .7s var(--ease),border-color .5s,box-shadow .6s'; card.style.transform = ''; setTimeout(() => card.style.transition = '', 700) } });
 }
 
-/* transición de cortina entre páginas */
+/* sin animación entre páginas: solo se marca que se llegó desde el sitio
+   para que el inicio no repita la intro */
 function transitions() {
-  const cur = $('#curtain'), bars = $$('#curtain i');
-  const enter = () => {
-    if (reduce || !sessionStorage.getItem('et-trans')) return;
-    sessionStorage.removeItem('et-trans');
-    bars.forEach(b => { b.style.transformOrigin = 'top'; b.style.transform = 'scaleY(1)' });
-    requestAnimationFrame(() => bars.forEach((b, i) => b.animate([{ transform: 'scaleY(1)' }, { transform: 'scaleY(0)' }], { duration: 360, delay: i * 25, easing: 'cubic-bezier(.77,0,.18,1)', fill: 'forwards' })));
-  };
-  enter();
-  addEventListener('pageshow', e => { if (e.persisted) bars.forEach(b => { b.getAnimations().forEach(a => a.cancel()); b.style.transform = 'scaleY(0)' }) });
+  try { sessionStorage.removeItem('et-trans') } catch (_) { }
+  addEventListener('pageshow', e => { if (e.persisted) $('#mmenu')?.classList.remove('open') });
   document.addEventListener('click', e => {
-    const a = e.target.closest('a[href]'); if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || a.target === '_blank') return;
+    const a = e.target.closest('a[href]'); if (!a || a.target === '_blank') return;
     const href = a.getAttribute('href'); if (!href || href.startsWith('#') || /^(https?:|mailto:|tel:)/.test(href)) return;
-    const [file, hash] = href.split('#'); const here = location.pathname.split('/').pop() || 'index.html';
-    if (file === here && hash !== undefined) return; // misma página, solo ancla
-    if (reduce) return;
-    e.preventDefault(); $('#mmenu').classList.remove('open');
-    bars.forEach((b, i) => { b.style.transformOrigin = 'bottom'; b.animate([{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 260, delay: i * 20, easing: 'cubic-bezier(.77,0,.18,1)', fill: 'forwards' }) });
     try { sessionStorage.setItem('et-trans', '1') } catch (_) { }
-    setTimeout(() => location.href = href, 260 + 4 * 20);
   });
 }
 
