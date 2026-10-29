@@ -27,7 +27,11 @@
 @media (max-width:860px){.boxes{grid-template-columns:1fr}}
 .boxes figure{margin:0}
 .boxes img{width:100%;border-radius:var(--r-lg)}
-.boxes .impact{max-width:360px;justify-self:center}
+.igal{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:12px;max-width:600px;width:100%;justify-self:center}
+.igal figure{position:relative;overflow:hidden;border-radius:var(--r-lg);margin:0}
+.igal figure:first-child{grid-row:span 2}
+.igal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0}
+.igal figure:first-child{aspect-ratio:9/14}
 .faqcta{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .btypes{display:grid;gap:10px;margin-top:24px}
 .btypes div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:14px 0}
@@ -91,7 +95,11 @@ details p{margin:0 0 22px;color:var(--mute);max-width:60ch}
 
   <section class="sec light">
     <div class="wrap boxes">
-      <figure class="reveal-img impact"><img src="img/marca/caja-impacto.webp" alt="Caja de impacto Invicta, amarilla y resistente" loading="lazy"></figure>
+      <div class="igal">
+        <figure class="reveal-img"><img src="img/marca/impacto-1.webp" srcset="img/marca/impacto-1-500.webp 500w, img/marca/impacto-1.webp 720w" sizes="(max-width:900px) 55vw, 340px" decoding="async" alt="Caja de impacto Invicta abierta con un reloj dorado de correa negra" loading="lazy"></figure>
+        <figure class="reveal-img"><img src="img/marca/impacto-2.webp" srcset="img/marca/impacto-2-500.webp 500w, img/marca/impacto-2.webp 720w" sizes="(max-width:900px) 40vw, 240px" decoding="async" alt="Caja de impacto Invicta con un reloj dorado de correa blanca" loading="lazy"></figure>
+        <figure class="reveal-img"><img src="img/marca/impacto-3.webp" srcset="img/marca/impacto-3-500.webp 500w, img/marca/impacto-3.webp 720w" sizes="(max-width:900px) 40vw, 240px" decoding="async" alt="Dos cajas de impacto Invicta abiertas con sus relojes" loading="lazy"></figure>
+      </div>
       <div>
         <span class="eyebrow">Presentación</span>
         <h2 class="h-lg" data-split style="margin-top:16px">Caja original <em class="gold">siempre incluida.</em></h2>
