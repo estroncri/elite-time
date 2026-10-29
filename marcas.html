@@ -15,7 +15,8 @@
 .bnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
 .stack{display:grid;gap:clamp(18px,3vw,28px);padding-bottom:clamp(70px,9vw,130px)}
 .bpanel{position:sticky;top:calc(var(--head-h) + 24px);min-height:min(78vh,720px);border-radius:var(--r-lg);border:1px solid var(--line);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;isolation:isolate;background:var(--ink-2);box-shadow:0 -30px 60px -30px rgba(0,0,0,.8);transform-origin:top center}
-.bpanel:nth-child(2){background:#121212}.bpanel:nth-child(3){background:#141414}.bpanel:nth-child(4){background:#161616}
+/* todas las tarjetas en blanco */
+.bpanel{background:#fff;box-shadow:0 -24px 50px -30px rgba(0,0,0,.35),0 1px 0 var(--line)}
 @media (max-width:900px){.bpanel{grid-template-columns:1fr;position:relative;top:0;min-height:0}}
 .bpanel .txt{padding:clamp(26px,4.5vw,64px);display:flex;flex-direction:column;gap:20px;position:relative;z-index:2}
 .bpanel .idx{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.2em;color:var(--dim)}
@@ -33,7 +34,7 @@
 .bpanel .vis .bg{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-size:clamp(6rem,16vw,15rem);color:transparent;-webkit-text-stroke:1px var(--line);line-height:.8;writing-mode:vertical-rl;transform:rotate(180deg);pointer-events:none;justify-self:end;padding-right:10px}
 .fan{position:relative;width:min(80%,440px);aspect-ratio:1}
 .fan a{position:absolute;inset:0;margin:auto;width:52%;height:82%;transition:transform 1s var(--ease)}
-.fan img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 28px 30px rgba(0,0,0,.65))}
+.fan img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 22px 22px rgba(0,0,0,.28))}
 .fan a:nth-child(1){transform:translate(-46%,6%) rotate(-16deg) scale(.82)}
 .fan a:nth-child(2){transform:translate(46%,6%) rotate(16deg) scale(.82)}
 .fan a:nth-child(3){transform:translate(0,-4%);z-index:2}
@@ -41,7 +42,7 @@
 .bpanel:hover .fan a:nth-child(2){transform:translate(60%,4%) rotate(22deg) scale(.86)}
 .bpanel:hover .fan a:nth-child(3){transform:translate(0,-8%) scale(1.05)}
 .fan .solo{width:70%;transform:none!important}
-.curren-box{width:min(86%,460px);filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.curren-box{width:min(86%,460px);filter:drop-shadow(0 24px 30px rgba(0,0,0,.25))}
 </style>
 </head>
 <body>
@@ -75,7 +76,7 @@ Elite.ready(d => {
     return `<article class="bpanel" id="${i.slug}">
       <div class="txt">
         <span class="idx">0${k + 1} / 0${B.length} · ${esc(i.since)}</span>
-        <div class="lg">${i.logo ? `<img src="${i.logo}" alt="${b}">` : `<span class="wd">${i.word}</span>`}</div>
+        <div class="lg">${i.logo ? `<img src="${i.logo.replace('-blanco', '')}" alt="${b}">` : `<span class="wd">${i.word}</span>`}</div>
         <h2 data-split>${esc(i.line)}</h2>
         <div class="lines">${i.lines.map(l => `<a href="coleccion.html#${b === 'Poedagar' ? i.slug : L.length ? l.toLowerCase().replace(/\s+/g, '-') : ''}">${esc(l)}</a>`).join('')}</div>
         <div class="meta">
@@ -90,7 +91,7 @@ Elite.ready(d => {
   /* efecto de cartas apiladas: la anterior se encoge al llegar la siguiente */
   if (window.gsap && window.ScrollTrigger && !Elite.reduce && innerWidth > 900) {
     const cards = $$('.bpanel');
-    cards.forEach((c, i) => { if (i === cards.length - 1) return; gsap.to(c, { scale: .92, filter: 'brightness(.55)', ease: 'none', scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top top+=120', scrub: true } }) });
+    cards.forEach((c, i) => { if (i === cards.length - 1) return; gsap.fromTo(c, { scale: 1, filter: 'brightness(1)' }, { scale: .92, filter: 'brightness(.8)', ease: 'none', scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top top+=120', scrub: true } }) });
     $$('.fan').forEach(f => gsap.from(f.children, { y: 120, opacity: 0, rotate: 0, stagger: .1, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: f, start: 'top 80%' } }));
   }
   if (location.hash) setTimeout(() => { const t = $(location.hash); t && (Elite.lenis ? Elite.lenis.scrollTo(t, { offset: -100, immediate: true }) : t.scrollIntoView()) }, 300);
