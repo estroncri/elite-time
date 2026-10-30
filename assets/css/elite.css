@@ -148,10 +148,10 @@ section{position:relative}
 @media (max-width:560px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
 .pcard{position:relative;border-radius:var(--r);border:1px solid var(--line);background:var(--ink-2);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transform-style:preserve-3d;transition:border-color .5s,box-shadow .6s var(--ease)}
 .pcard:hover{border-color:var(--gold-2);box-shadow:0 40px 70px -40px #000}
-.pcard .cush{position:relative;aspect-ratio:1/1.06;display:grid;place-items:center;padding:22px;background:radial-gradient(85% 70% at 50% 38%,var(--ink-4),var(--ink-2) 74%);overflow:hidden}
+.pcard .cush{position:relative;aspect-ratio:1/1.06;display:grid;place-items:center;padding:22px;background:#fff;overflow:hidden}
 .pcard .cush::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,rgba(237,230,217,.1) 50%,transparent 62%);transform:translateX(-120%);transition:transform 1.2s var(--ease)}
 .pcard:hover .cush::after{transform:translateX(120%)}
-.pcard .cush img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;filter:drop-shadow(0 22px 24px rgba(0,0,0,.6));transition:transform .9s var(--ease)}
+.pcard .cush img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.24));transition:transform .9s var(--ease)}
 .pcard:hover .cush img{transform:scale(1.07) rotate(-4deg)}
 .pcard .info{padding:16px 18px 18px;display:grid;gap:4px;border-top:1px solid var(--line)}
 .pcard .brand{font-family:var(--f-mono);font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
