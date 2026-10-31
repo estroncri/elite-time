@@ -138,7 +138,8 @@ E.toast = toast;
 
 /* ================= cabecera y pie ================= */
 function chrome() {
-  const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  /* Cloudflare Pages sirve las páginas sin «.html» (/coleccion): se compara siempre con el nombre del archivo */
+  const here = (location.pathname.split('/').pop() || 'index').toLowerCase().replace(/\.html$/, '') + '.html';
   const cur = h => here === h || (h === 'coleccion.html' && here === 'reloj.html') ? ' aria-current="page"' : '';
   const ann = ['Relojería 100% original', 'Garantía de 1 año en maquinaria y batería', 'Envíos a toda Colombia', 'Pago contra entrega en Barranquilla y Soledad', `${ICON.wa} Pedidos por WhatsApp · ${E.phone()}`];
   document.body.insertAdjacentHTML('afterbegin', `
