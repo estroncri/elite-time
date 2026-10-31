@@ -29,7 +29,15 @@
 .hero-meta b{display:block;font-family:var(--f-display);font-weight:500;font-size:clamp(1.5rem,2.4vw,2rem)}
 .hero-meta span{font-size:.8rem;color:var(--mute)}
 .stage{position:relative;aspect-ratio:1;width:100%;max-width:600px;justify-self:center}
-.stage svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 50px 60px rgba(0,0,0,.65))}
+.stage svg{width:100%;height:100%;overflow:visible}
+/* el reloj va en capas: la sombra se dibuja una vez en la base fija y las agujas giran en capas propias */
+/* en línea, como el svg que reemplaza: el alto del escenario queda igual */
+.stage .dialbox{position:relative;display:inline-block;width:100%;height:100%}
+.stage #dial{filter:drop-shadow(0 50px 60px rgba(0,0,0,.65))}
+.stage .capa{position:absolute;inset:0}
+.stage .capa svg{display:block}
+.stage .bisel{transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.stage .listo .bisel{will-change:transform}
 .stage .orbit{position:absolute;width:23%;filter:drop-shadow(0 26px 26px rgba(0,0,0,.6));pointer-events:none}
 .stage .o1{left:-14%;top:4%;animation:float 7s ease-in-out infinite}
 .stage .o2{right:-8%;bottom:4%;width:21%;animation:float 8s -2s ease-in-out infinite}
@@ -190,7 +198,7 @@
         </div>
       </div>
       <div class="stage" id="stage" aria-label="Reloj con la hora actual de Barranquilla">
-        <svg id="dial" viewBox="-260 -260 520 520" aria-hidden="true"></svg>
+        <div class="dialbox"><svg id="dial" viewBox="-260 -260 520 520" aria-hidden="true"></svg></div>
         <img class="orbit o1" src="img/relojes/p13-3.webp" srcset="img/relojes/p13-3-400.webp 400w, img/relojes/p13-3-700.webp 700w, img/relojes/p13-3.webp 1100w" sizes="150px" decoding="async" alt="" data-depth="30">
         <img class="orbit o2" src="img/relojes/p04-1.webp" srcset="img/relojes/p04-1-400.webp 400w, img/relojes/p04-1-700.webp 700w, img/relojes/p04-1.webp 1100w" sizes="150px" decoding="async" alt="" data-depth="-24">
         <img class="orbit o3" src="img/relojes/p13-1.webp" srcset="img/relojes/p13-1-400.webp 400w, img/relojes/p13-1-700.webp 700w, img/relojes/p13-1.webp 1100w" sizes="150px" decoding="async" alt="" data-depth="18">
@@ -280,7 +288,7 @@
             <li><b>Caja de impacto</b><span>Opcional · Invicta y Technomarine</span></li>
           </ul>
           <div class="tvid" id="tvid" data-reveal>
-            <video id="tulaV" src="video/tula.mp4#t=0.5" preload="metadata" playsinline></video>
+            <video id="tulaV" src="video/tula.mp4#t=0.5" poster="img/tula/video-tula.webp" preload="none" playsinline></video>
             <button class="pl" id="tulaPlay" aria-label="Ver el video de la tula"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>VER LA TULA</b></button>
           </div>
         </div>
@@ -314,9 +322,9 @@
   </section>
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/js/vendor/gsap-3.12.5.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger-3.12.5.min.js"></script>
+<script src="assets/js/vendor/lenis-1.1.13.min.js"></script>
 <script src="assets/js/elite.js"></script>
 <script>
 Elite.ready(d => {
@@ -339,7 +347,10 @@ Elite.ready(d => {
   $('#btiles').addEventListener('pointermove', e => { const t = e.target.closest('.btile'); if (!t) return; const r = t.getBoundingClientRect(); t.style.setProperty('--mx', e.clientX - r.left + 'px'); t.style.setProperty('--my', e.clientY - r.top + 'px') });
 
   /* video */
-  const tl = $('#tulaV'); $('#tulaPlay').onclick = () => { tl.controls = true; tl.currentTime = 0; tl.play().catch(() => {}); $('#tvid').classList.add('on') };
+  /* la tula muestra desde el inicio su cuadro del segundo 0,5 y el video empieza a cargar al acercarse */
+  const tl = $('#tulaV');
+  new IntersectionObserver(([en], o) => { if (en.isIntersecting) { tl.preload = 'metadata'; o.disconnect() } }, { rootMargin: '800px 0px' }).observe(tl);
+  $('#tulaPlay').onclick = () => { tl.controls = true; tl.currentTime = 0; tl.play().catch(() => {}); $('#tvid').classList.add('on') };
   const tv = $('#tv'); $('#tvPlay').onclick = () => { tv.controls = true; tv.currentTime = 0; tv.play().catch(() => {}); $('#vid').classList.add('on') };
 
   /* carril horizontal fijado en escritorio */
@@ -355,14 +366,19 @@ Elite.ready(d => {
 /* ---- reloj del hero: hora real de Barranquilla, bisel que gira con el scroll ---- */
 function buildDial() {
   const {$, reduce, fine} = Elite, s = $('#dial'), NS = 'http://www.w3.org/2000/svg';
-  const el = (t, a, p = s) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e };
+  let base = s;
+  const el = (t, a, p = base) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e };
+  /* capas apiladas encima de la base, en el orden en que se dibujan; cada una en un div porque el
+     navegador solo mueve aparte (sin redibujar) cajas HTML, no dibujos SVG */
+  const caja = s.parentNode;
+  const capa = cls => { const d = document.createElement('div'), c = document.createElementNS(NS, 'svg'); d.className = 'capa ' + cls; c.setAttribute('viewBox', '-260 -260 520 520'); c.setAttribute('aria-hidden', 'true'); d.appendChild(c); caja.appendChild(d); return c };
   el('defs', {}).innerHTML = `<radialGradient id="gD" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#202020"/><stop offset=".7" stop-color="#0e0e0e"/><stop offset="1" stop-color="#0d0c0a"/></radialGradient>
   <linearGradient id="gC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7d3a4"/><stop offset=".35" stop-color="#9c8350"/><stop offset=".6" stop-color="#d9c08a"/><stop offset="1" stop-color="#6f5b33"/></linearGradient>
   <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#181818"/><stop offset="1" stop-color="#0f0e0c"/></linearGradient>
   <linearGradient id="gH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b59a63"/><stop offset=".5" stop-color="#f0e2bf"/><stop offset="1" stop-color="#b59a63"/></linearGradient>`;
   el('rect', { x: 240, y: -26, width: 20, height: 52, rx: 6, fill: 'url(#gC)' });
   el('circle', { r: 252, fill: 'url(#gC)' }); el('circle', { r: 244, fill: '#0b0b0b' });
-  const bezel = el('g', {}); el('circle', { r: 240, fill: 'url(#gB)' }, bezel);
+  const bezel = el('g', {}, capa('bisel')), bisel = bezel.parentNode.parentNode; el('circle', { r: 240, fill: 'url(#gB)' }, bezel);
   for (let i = 0; i < 60; i++) {
     const a = i * 6;
     if (i === 0) { el('path', { d: 'M0,-232 L-11,-212 L11,-212Z', fill: '#caae76' }, bezel); continue }
@@ -370,6 +386,7 @@ function buildDial() {
     else if (i < 15) el('rect', { x: -1.5, y: -232, width: 3, height: 12, fill: '#caae76', transform: `rotate(${a})` }, bezel);
     else el('circle', { cx: 0, cy: -224, r: 2, fill: '#6d6455', transform: `rotate(${a})` }, bezel);
   }
+  base = capa('esfera');
   el('circle', { r: 198, fill: '#0c0b09' }); el('circle', { r: 192, fill: 'url(#gD)' });
   const sb = el('g', { opacity: .22 }); for (let i = 0; i < 120; i++) el('line', { x1: 0, y1: -30, x2: 0, y2: -190, stroke: i % 2 ? '#2c2c2c' : '#141414', 'stroke-width': 3, transform: `rotate(${i * 3})` }, sb);
   for (let i = 0; i < 60; i++) if (i % 5) el('rect', { x: -.8, y: -188, width: 1.6, height: 7, fill: '#8b8273', transform: `rotate(${i * 6})` });
@@ -384,46 +401,66 @@ function buildDial() {
   const T = (y, txt, fs, fill, ls, fam) => { const t = el('text', { x: 0, y, 'text-anchor': 'middle', fill, 'font-family': fam, 'font-size': fs, 'letter-spacing': ls }); t.textContent = txt };
   T(-82, 'ÉLITE', 30, '#caae76', 6, 'Playfair Display, Georgia, serif'); T(-58, 'TIME', 13, '#a49c8f', 7, 'Playfair Display, Georgia, serif');
   T(82, 'ORIGINAL · 200 M', 10.5, '#a49c8f', 3, 'IBM Plex Mono, monospace'); T(100, 'BARRANQUILLA', 9, '#6d6455', 3, 'IBM Plex Mono, monospace');
-  const hH = el('g', {}); el('path', { d: 'M-8,30 L-6,-100 L0,-118 L6,-100 L8,30Z', fill: 'url(#gH)' }, hH); el('rect', { x: -2.5, y: -98, width: 5, height: 60, fill: '#efe6cf', opacity: .8 }, hH);
-  const hM = el('g', {}); el('path', { d: 'M-6,34 L-4.5,-160 L0,-176 L4.5,-160 L6,34Z', fill: 'url(#gH)' }, hM); el('rect', { x: -2, y: -156, width: 4, height: 100, fill: '#efe6cf', opacity: .8 }, hM);
-  const hS = el('g', {}); el('rect', { x: -1.2, y: -182, width: 2.4, height: 226, fill: '#caae76' }, hS); el('circle', { cy: -128, r: 7, fill: 'none', stroke: '#caae76', 'stroke-width': 2.4 }, hS); el('circle', { r: 9, fill: '#caae76' }, hS);
+  const hH = el('g', {}, capa('aguja')); el('path', { d: 'M-8,30 L-6,-100 L0,-118 L6,-100 L8,30Z', fill: 'url(#gH)' }, hH); el('rect', { x: -2.5, y: -98, width: 5, height: 60, fill: '#efe6cf', opacity: .8 }, hH);
+  const hM = el('g', {}, capa('aguja')); el('path', { d: 'M-6,34 L-4.5,-160 L0,-176 L4.5,-160 L6,34Z', fill: 'url(#gH)' }, hM); el('rect', { x: -2, y: -156, width: 4, height: 100, fill: '#efe6cf', opacity: .8 }, hM);
+  const hS = el('g', {}, capa('aguja')); el('rect', { x: -1.2, y: -182, width: 2.4, height: 226, fill: '#caae76' }, hS); el('circle', { cy: -128, r: 7, fill: 'none', stroke: '#caae76', 'stroke-width': 2.4 }, hS); el('circle', { r: 9, fill: '#caae76' }, hS);
+  base = capa('tapa');
   el('circle', { r: 4, fill: '#0a0a0a' });
   el('path', { d: 'M-170,-80 A190,190 0 0 1 60,-185 A230,230 0 0 0 -170,-80Z', fill: '#fff', opacity: .05 });
-  /* Barranquilla está siempre en UTC−5 (sin horario de verano): la hora se calcula con aritmética simple,
-     y el reloj solo se anima mientras está en pantalla y la pestaña está visible */
-  const OFF = -5 * 3600e3;
-  let lastS = -1, onScreen = true, tickId = 0;
-  function tick() {
-    const d = new Date(Date.now() + OFF), s = d.getUTCSeconds(), m = d.getUTCMinutes(), h = d.getUTCHours();
-    const sec = s + (reduce ? 0 : d.getUTCMilliseconds() / 1000), min = m + sec / 60, hr = (h % 12) + min / 60;
-    hS.setAttribute('transform', `rotate(${sec * 6})`); hM.setAttribute('transform', `rotate(${min * 6})`); hH.setAttribute('transform', `rotate(${hr * 30})`);
-    if (s !== lastS) { lastS = s; date.textContent = String(d.getUTCDate()).padStart(2, '0'); $('#dialCap').textContent = `BARRANQUILLA · ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} · GMT−5` }
-    tickId = 0; if (onScreen && !document.hidden) tickId = reduce ? setTimeout(tick, 1000) : requestAnimationFrame(tick);
+  /* Barranquilla está siempre en UTC−5 (sin horario de verano): la hora se calcula con aritmética simple.
+     Las agujas giran con animaciones que el navegador mueve aparte, sin volver a dibujar el reloj ni su
+     sombra en cada cuadro. Se ponen en hora al cargar, al terminar la entrada, al volver a la pestaña y
+     al volver a verlas; fuera de pantalla se detienen. */
+  const OFF = -5 * 3600e3, cap = $('#dialCap'), pad = n => String(n).padStart(2, '0');
+  const agujas = [[hS, 60], [hM, 3600], [hH, 43200]].map(([g, p]) => [g.parentNode.parentNode, p]);
+  let enPantalla = true, cada = 0, texto = '', dia = '', giros = [];
+  function poner() {
+    const d = new Date(Date.now() + OFF), m = d.getUTCMinutes();
+    const sec = d.getUTCSeconds() + (reduce ? 0 : d.getUTCMilliseconds() / 1000);
+    const t = [sec, m * 60 + sec, (d.getUTCHours() % 12) * 3600 + m * 60 + sec];
+    giros.forEach(g => g.cancel()); giros = [];
+    agujas.forEach(([a, p], i) => {
+      if (reduce) { a.style.transform = `rotate(${t[i] / p * 360}deg)`; return }
+      const g = a.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: p * 1000, iterations: Infinity });
+      g.currentTime = t[i] * 1000; giros.push(g);
+    });
   }
-  const wake = () => { if (!tickId && onScreen && !document.hidden) tick() };
-  new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; wake() }).observe($('#stage'));
-  document.addEventListener('visibilitychange', wake);
-  tick();
+  function segundo() {
+    const d = new Date(Date.now() + OFF);
+    const c = `BARRANQUILLA · ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())} · GMT−5`, n = pad(d.getUTCDate());
+    if (c !== texto) cap.textContent = texto = c;
+    if (n !== dia) date.textContent = dia = n;
+    if (reduce) poner();
+    cada = enPantalla && !document.hidden ? setTimeout(segundo, 1000 - Date.now() % 1000) : 0;
+  }
+  const wake = () => {
+    if (!enPantalla || document.hidden) return;
+    if (!cada) segundo();
+    if (!giros.length || giros[0].playState !== 'running') poner();
+  };
+  new IntersectionObserver(([en]) => { enPantalla = en.isIntersecting; if (!enPantalla) giros.forEach(g => g.pause()); wake() }).observe($('#stage'));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) poner(); wake() });
+  poner(); segundo();
   if (reduce) return;
   /* bisel unidireccional: clics de 6° al hacer scroll */
-  let raf; addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { bezel.style.transition = 'transform .35s cubic-bezier(.3,1.6,.5,1)'; bezel.style.transform = `rotate(${-Math.round(scrollY / 14) * 6}deg)` }) }, { passive: true });
+  let paso = 0; addEventListener('scroll', () => { const p = Math.round(scrollY / 14); if (p !== paso) { paso = p; bisel.style.transform = `rotate(${-p * 6}deg)` } }, { passive: true });
   /* entrada del reloj */
   if (window.gsap) {
     gsap.set('#stage', { autoAlpha: 0, scale: .82, rotate: -14 }); gsap.set('.orbit', { autoAlpha: 0, scale: .4, y: 60 });
     Elite.introDone.then(() => {
-      gsap.to('#stage', { autoAlpha: 1, scale: 1, rotate: 0, duration: 2, ease: 'expo.out', delay: .15 });
+      gsap.to('#stage', { autoAlpha: 1, scale: 1, rotate: 0, duration: 2, ease: 'expo.out', delay: .15, onComplete() { caja.classList.add('listo'); poner() } });
       gsap.to('.orbit', { autoAlpha: 1, scale: 1, y: 0, duration: 1.6, stagger: .14, ease: 'expo.out', delay: .55 });
       gsap.from('.hero .giant', { yPercent: 30, autoAlpha: 0, duration: 2.2, ease: 'expo.out' });
     });
-  }
+  } else caja.classList.add('listo');
   if (fine) {
     const st = $('#stage');
     addEventListener('pointermove', e => {
       const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
-      s.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg)`;
+      caja.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg)`;
       Elite.$$('.orbit', st).forEach(o => o.style.transform = `translate(${x * +o.dataset.depth}px,${y * +o.dataset.depth}px)`);
     }, { passive: true });
-    s.style.transition = 'transform .8s cubic-bezier(.2,.7,.1,1)';
+    caja.style.transition = 'transform .8s cubic-bezier(.2,.7,.1,1)';
   }
 }
 </script>
